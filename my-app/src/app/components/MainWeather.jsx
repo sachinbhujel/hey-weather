@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Search from "./Search";
 import { weatherData } from "@/data";
+import HourlyWeather from "./HourlyWeather";
 
 function MainWeather() {
   const [weatherDataAPI, setWeatherDataAPI] = useState(null);
@@ -41,14 +42,23 @@ function MainWeather() {
 
     const temp = weatherDataAPI.main?.temp;
 
+    const now = weatherDataAPI.dt;
+    const sunrise = weatherDataAPI.sys?.sunrise;
+    const sunset = weatherDataAPI.sys?.sunset;
+    const isDay = now >= sunrise && now < sunset;
+
     for (let range in weatherData) {
       const lastDash = range.lastIndexOf("-");
       const min = Number(range.slice(0, lastDash));
       const max = Number(range.slice(lastDash + 1));
 
       if (temp >= min && temp <= max) {
-        setWeatherNote(weatherData[range].note);
-        setWeatherImg(weatherData[range].image);
+        const weatherInfo = isDay
+          ? weatherData[range].day
+          : weatherData[range].night;
+
+        setWeatherNote(weatherInfo.note);
+        setWeatherImg(weatherInfo.image);
         break;
       }
     }
@@ -85,6 +95,13 @@ function MainWeather() {
         )
       ) : (
         <p>Loading...</p>
+      )}
+
+      {weatherDataAPI && weatherDataAPI.coord && (
+        <HourlyWeather
+          lat={weatherDataAPI.coord.lat}
+          lon={weatherDataAPI.coord.lon}
+        />
       )}
     </div>
   );
