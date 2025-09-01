@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { weatherData } from "@/data";
 
-function HourlyWeather({ lat, lon }) {
+function HourlyWeather({ lat, lon, weatherDataAPI }) {
   const [hourlyData, setHourlyData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [weatherNote, setWeatherNote] = useState("");
+  const [weatherImg, setWeatherImg] = useState("");
   const [error, setError] = useState(null);
+
   const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
   useEffect(() => {
@@ -23,17 +27,42 @@ function HourlyWeather({ lat, lon }) {
         }
 
         const data = await res.json();
-        console.log(data);
 
-        const nextHours = data.list.slice(0, 5).map((item) => ({
-          temp: Math.round(item.main.temp),
-          time: new Date(item.dt * 1000).toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-          }),
-        }));
+        const nextHours = data.list.slice(0, 5).map((item) => {
+          const temp = item.main.temp;
+
+          const now = weatherDataAPI.dt;
+          const sunrise = weatherDataAPI.sys?.sunrise;
+          const sunset = weatherDataAPI.sys?.sunset;
+          const isDay = now >= sunrise && now < sunset;
+
+          for (let range in weatherData) {
+            const lastDash = range.lastIndexOf("-");
+            const min = Number(range.slice(0, lastDash));
+            const max = Number(range.slice(lastDash + 1));
+
+            if (temp >= min && temp <= max) {
+              const weatherInfo = isDay
+                ? weatherData[range].day
+                : weatherData[range].night;
+
+              setWeatherImg(weatherInfo.image);
+              setWeatherNote(weatherInfo.note);
+              break;
+            }
+          }
+
+          return {
+            temp,
+            time: new Date(item.dt * 1000).toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            }),
+          };
+        });
 
         setHourlyData(nextHours);
+        console.log(weatherImg);
       } catch (err) {
         console.error("Error fetching hourly weather:", err);
         setError(err.message);
@@ -73,21 +102,29 @@ function HourlyWeather({ lat, lon }) {
       </div>
     );
   }
-
   return (
     <div>
       <h1>Next 5 Forecasts (3-hour intervals)</h1>
-      {hourlyData.length > 0 ? (
-        <ul>
-          {hourlyData.map((hour, index) => (
-            <li key={index} style={{ marginBottom: "10px" }}>
+      <ul>
+        {hourlyData.map((hour, index) => (
+          <div key={index}>
+            {weatherImg && (
+              <img src={weatherImg} alt={weatherNote} width={200} />
+            )}
+            <li
+              key={index}
+              style={{
+                marginBottom: "10px",
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+              }}
+            >
               <strong>{hour.time}:</strong> {hour.temp}°C
             </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No weather data available.</p>
-      )}
+          </div>
+        ))}
+      </ul>
     </div>
   );
 }

@@ -80,13 +80,12 @@ function MainWeather() {
             {weatherImg && (
               <img src={weatherImg} alt={weatherNote} width={200} />
             )}
-
+            {weatherNote && <p>Note: {weatherNote}</p>}
             <p>Temperature: {weatherDataAPI.main?.temp}°C</p>
             <p>Humidity: {weatherDataAPI.main?.humidity}%</p>
             <p>
               Wind Speed: {Math.round(weatherDataAPI.wind?.speed * 3.6)} km/h
             </p>
-            {weatherNote && <p>Note: {weatherNote}</p>}
           </div>
         ) : weatherDataAPI.code === 404 ? (
           <p>City not found</p>
@@ -101,6 +100,7 @@ function MainWeather() {
         <HourlyWeather
           lat={weatherDataAPI.coord.lat}
           lon={weatherDataAPI.coord.lon}
+          weatherDataAPI={weatherDataAPI}
         />
       )}
     </div>
