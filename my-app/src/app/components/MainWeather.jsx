@@ -10,6 +10,32 @@ function MainWeather() {
   const [weatherImg, setWeatherImg] = useState("");
   const [city, setCity] = useState("");
 
+  const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
+
+  useEffect(() => {
+    if (city) return;
+
+    async function fetchIP() {
+      try {
+        const res = await fetch("https://ipapi.co/json/");
+        const ipData = await res.json();
+        const userCity = ipData.city;
+
+        if (userCity) {
+          const weatherRes = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${userCity}&appid=${WEATHER_API_KEY}&units=metric`
+          );
+          const weather = await weatherRes.json();
+          setWeatherDataAPI(weather);
+        }
+      } catch (error) {
+        console.log("IP location fetch failed:", error);
+      }
+    }
+
+    fetchIP();
+  }, [city, WEATHER_API_KEY]);
+
   useEffect(() => {
     if (!weatherDataAPI) return;
 

@@ -6,7 +6,7 @@ function Search({ setCity, city, setWeatherDataAPI }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${WEATHER_API_KEY}&units=metric`,
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${WEATHER_API_KEY}&units=metric`
     );
     const data = await res.json();
     console.log(data);
