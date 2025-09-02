@@ -71,21 +71,48 @@ function MainWeather() {
         city={city}
         setWeatherDataAPI={setWeatherDataAPI}
       />
-      <h1>Main Weather</h1>
 
       {weatherDataAPI ? (
         weatherDataAPI.name ? (
-          <div>
-            <p>City Name: {weatherDataAPI.name}</p>
-            {weatherImg && (
-              <img src={weatherImg} alt={weatherNote} width={200} />
-            )}
-            {weatherNote && <p>Note: {weatherNote}</p>}
-            <p>Temperature: {weatherDataAPI.main?.temp}°C</p>
-            <p>Humidity: {weatherDataAPI.main?.humidity}%</p>
-            <p>
-              Wind Speed: {Math.round(weatherDataAPI.wind?.speed * 3.6)} km/h
-            </p>
+          <div className="flex flex-col gap-10">
+            <div className="mt-6 p-4 border m-auto flex flex-col sm:flex-row justify-center sm:gap-6 gap-10 items-center w-[90%] sm:items-start">
+              <div className="bg-white shadow-lg p-3 rotate-[-2deg] w-full sm:w-[50%] pb-10">
+                {weatherImg && (
+                  <img
+                    src={weatherImg}
+                    alt={weatherNote}
+                    className="sm:w-[100%] w-full h-[340px] object-cover"
+                  />
+                )}
+                <p className="text-center mt-2">
+                  {weatherDataAPI.name}, {weatherDataAPI.sys?.country}
+                </p>
+              </div>
+
+              {weatherNote && (
+                <div className="bg-yellow-200 shadow-md p-4 sm:w-[35%] w-full sm:rotate-2 rotate-1 relative h-max">
+                  <div className="absolute top-[-10px] left-1/2 -translate-x-1/2 w-[60px] h-[15px] bg-yellow-100"></div>
+                  <h1 className="text-2xl mb-2">Right Now:</h1>
+                  <p className="">{weatherNote}</p>
+                </div>
+              )}
+            </div>
+            <div className="flex sm:flex-row flex-col justify-between border w-[90%] justify-center m-auto gap-4">
+              <div className="sm:w-[30%] w-full border p-2">
+                <h1 className="text-lg">Temperature</h1>
+                <p className="text-2xl">{weatherDataAPI.main?.temp}°C</p>
+              </div>
+              <div className="sm:w-[30%] w-full border p-2">
+                <h1 className="text-lg">Humidity</h1>
+                <p className="text-2xl">{weatherDataAPI.main?.humidity}%</p>
+              </div>
+              <div className="sm:w-[30%] w-full border p-2">
+                <h1 className="text-lg">Wind Speed</h1>
+                <p className="text-2xl">
+                  {Math.round(weatherDataAPI.wind?.speed * 3.6)} km/h
+                </p>
+              </div>
+            </div>
           </div>
         ) : weatherDataAPI.code === 404 ? (
           <p>City not found</p>

@@ -14,17 +14,36 @@ function Search({ setCity, city, setWeatherDataAPI }) {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="flex border sm:w-[70%] p-2 justify-center m-auto mt-6">
+      <form
+        onSubmit={handleSubmit}
+        className="flex border justify-between w-full items-center gap-1"
+      >
         <input
           type="text"
-          className="border"
+          className="border w-full p-1 rounded-lg"
           value={city}
-          placeholder="enter a city"
+          placeholder="Search location"
           onChange={(e) => setCity(e.target.value)}
           required
         />
-        <button type="submit">Search</button>
+        <div className="border rounded-lg p-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-search-icon lucide-search"
+          >
+            <path d="m21 21-4.34-4.34" />
+            <circle cx="11" cy="11" r="8" />
+          </svg>
+        </div>
       </form>
     </div>
   );
