@@ -106,24 +106,21 @@ function HourlyWeather({ lat, lon, weatherDataAPI }) {
   }
 
   return (
-    <div className="w-[90%] border bg-red-300 m-auto mt-6">
+    <div className="w-[90%] border m-auto mt-6">
       <h1 className="text-2xl">Next 5 Forecasts (3-hour intervals)</h1>
       <hr className="mt-2" />
-      <div className="flex gap-8 mt-6">
+      <div className="border flex gap-10 overflow-x-auto">
         {hourlyData.map((hour, index) => (
-          <div
-            key={index}
-            className={`border sm:w-[20%] rotate-${(index % 4) * 3}`}
-          >
-            <div className="bg-white shadow-lg p-3 border w-40 pb-10 h-50 ">
+          <div key={index}>
+            <div className="border w-40 h-60 bg-white shadow-lg p-2">
               {hour.weatherImage && (
                 <img
                   src={hour.weatherImage}
                   alt={hour.weatherNote}
-                  className="object-cover h-30 w-full"
+                  className="bg-black h-30"
                 />
               )}
-              <div className="flex gap-1 justify-center items-center mt-3">
+              <div className="flex justify-center gap-1">
                 <p>{hour.time}</p>
                 <p>-</p>
                 <p>{hour.temp}°C</p>
