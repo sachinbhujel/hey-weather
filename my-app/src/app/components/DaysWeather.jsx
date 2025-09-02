@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function DaysWeather({ lat, lon, weatherDataAPI }) {
   const [dailyData, setDailyData] = useState([]);
@@ -34,7 +34,10 @@ function DaysWeather({ lat, lon, weatherDataAPI }) {
         setLoading(false);
       }
     }
-  });
+
+    fetchDailyData();
+  }, [lat, lon, WEATHER_API_KEY]);
+
   return <h1>5 days forecast</h1>;
 }
 

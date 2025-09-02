@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Search from "./Search";
 import { weatherData } from "@/data";
 import HourlyWeather from "./HourlyWeather";
+import DaysWeather from "./DaysWeather";
 
 function MainWeather() {
   const [weatherDataAPI, setWeatherDataAPI] = useState(null);
@@ -123,12 +124,19 @@ function MainWeather() {
         <p>Loading...</p>
       )}
 
-      {weatherDataAPI && weatherDataAPI.coord && (
-        <HourlyWeather
-          lat={weatherDataAPI.coord.lat}
-          lon={weatherDataAPI.coord.lon}
-          weatherDataAPI={weatherDataAPI}
-        />
+      {weatherDataAPI?.coord && (
+        <>
+          <HourlyWeather
+            lat={weatherDataAPI.coord.lat}
+            lon={weatherDataAPI.coord.lon}
+            weatherDataAPI={weatherDataAPI}
+          />
+          <DaysWeather
+            lat={weatherDataAPI.coord.lat}
+            lon={weatherDataAPI.coord.lon}
+            weatherDataAPI={weatherDataAPI}
+          />
+        </>
       )}
     </div>
   );
