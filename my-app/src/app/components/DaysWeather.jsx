@@ -27,8 +27,18 @@ function DaysWeather({ lat, lon, weatherDataAPI }) {
 
         const data = await res.json();
         console.log(data);
+
+        let nextDays = [];
+        for (let i = 0; i < data.list.length; i++) {
+          if (nextDays.length === 5) break;
+          if (data.list[i].dt_txt.includes("00:00:00")) {
+            nextDays.push(data.list[i]);
+          }
+        }
+
+        console.log(nextDays);
       } catch (error) {
-        console.error("Error fetching daily weather:", err);
+        console.error("Error fetching daily weather:", error);
         setError(err.message);
       } finally {
         setLoading(false);
