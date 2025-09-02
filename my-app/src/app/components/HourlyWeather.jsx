@@ -4,8 +4,6 @@ import { weatherData } from "@/data";
 function HourlyWeather({ lat, lon, weatherDataAPI }) {
   const [hourlyData, setHourlyData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [weatherNote, setWeatherNote] = useState("");
-  const [weatherImg, setWeatherImg] = useState("");
   const [error, setError] = useState(null);
 
   const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
@@ -36,6 +34,9 @@ function HourlyWeather({ lat, lon, weatherDataAPI }) {
           const sunset = weatherDataAPI.sys?.sunset;
           const isDay = now >= sunrise && now < sunset;
 
+          let weatherImage = "";
+          let weatherNote = "";
+
           for (let range in weatherData) {
             const lastDash = range.lastIndexOf("-");
             const min = Number(range.slice(0, lastDash));
@@ -46,14 +47,16 @@ function HourlyWeather({ lat, lon, weatherDataAPI }) {
                 ? weatherData[range].day
                 : weatherData[range].night;
 
-              setWeatherImg(weatherInfo.image);
-              setWeatherNote(weatherInfo.note);
+              weatherImage = weatherInfo.image;
+              weatherNote = weatherInfo.note;
               break;
             }
           }
 
           return {
             temp,
+            weatherImage,
+            weatherNote,
             time: new Date(item.dt * 1000).toLocaleTimeString([], {
               hour: "2-digit",
               minute: "2-digit",
@@ -62,7 +65,6 @@ function HourlyWeather({ lat, lon, weatherDataAPI }) {
         });
 
         setHourlyData(nextHours);
-        console.log(weatherImg);
       } catch (err) {
         console.error("Error fetching hourly weather:", err);
         setError(err.message);
@@ -108,8 +110,8 @@ function HourlyWeather({ lat, lon, weatherDataAPI }) {
       <ul>
         {hourlyData.map((hour, index) => (
           <div key={index}>
-            {weatherImg && (
-              <img src={weatherImg} alt={weatherNote} width={200} />
+            {hour.weatherImage && (
+              <img src={hour.weatherImage} alt={hour.weatherNote} width={200} />
             )}
             <li
               key={index}
