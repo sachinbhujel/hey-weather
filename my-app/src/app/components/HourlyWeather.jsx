@@ -104,29 +104,34 @@ function HourlyWeather({ lat, lon, weatherDataAPI }) {
       </div>
     );
   }
+
   return (
-    <div>
-      <h1>Next 5 Forecasts (3-hour intervals)</h1>
-      <ul>
+    <div className="w-[90%] border bg-red-300 m-auto mt-6">
+      <h1 className="text-2xl">Next 5 Forecasts (3-hour intervals)</h1>
+      <hr className="mt-2" />
+      <div className="flex gap-8 mt-6">
         {hourlyData.map((hour, index) => (
-          <div key={index}>
-            {hour.weatherImage && (
-              <img src={hour.weatherImage} alt={hour.weatherNote} width={200} />
-            )}
-            <li
-              key={index}
-              style={{
-                marginBottom: "10px",
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-              }}
-            >
-              <strong>{hour.time}:</strong> {hour.temp}°C
-            </li>
+          <div
+            key={index}
+            className={`border sm:w-[20%] rotate-${(index % 4) * 3}`}
+          >
+            <div className="bg-white shadow-lg p-3 border w-40 pb-10 h-50 ">
+              {hour.weatherImage && (
+                <img
+                  src={hour.weatherImage}
+                  alt={hour.weatherNote}
+                  className="object-cover h-30 w-full"
+                />
+              )}
+              <div className="flex gap-1 justify-center items-center mt-3">
+                <p>{hour.time}</p>
+                <p>-</p>
+                <p>{hour.temp}°C</p>
+              </div>
+            </div>
           </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

@@ -98,15 +98,15 @@ function MainWeather() {
               )}
             </div>
             <div className="flex sm:flex-row flex-col justify-between border w-[90%] justify-center m-auto gap-4">
-              <div className="sm:w-[30%] w-full border p-2">
+              <div className="sm:w-[33.3%] w-full border p-2 flex flex-col items-center gap-4">
                 <h1 className="text-lg">Temperature</h1>
                 <p className="text-2xl">{weatherDataAPI.main?.temp}°C</p>
               </div>
-              <div className="sm:w-[30%] w-full border p-2">
+              <div className="sm:w-[33.3%] w-full border p-2 flex flex-col items-center gap-4">
                 <h1 className="text-lg">Humidity</h1>
                 <p className="text-2xl">{weatherDataAPI.main?.humidity}%</p>
               </div>
-              <div className="sm:w-[30%] w-full border p-2">
+              <div className="sm:w-[33.3%] w-full border p-2 flex flex-col items-center gap-4">
                 <h1 className="text-lg">Wind Speed</h1>
                 <p className="text-2xl">
                   {Math.round(weatherDataAPI.wind?.speed * 3.6)} km/h
