@@ -6,7 +6,8 @@ function HourlyWeather({ lat, lon, weatherDataAPI }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
+const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
+
 
   useEffect(() => {
     if (!lat || !lon || !WEATHER_API_KEY) return;
@@ -106,21 +107,21 @@ function HourlyWeather({ lat, lon, weatherDataAPI }) {
   }
 
   return (
-    <div className="w-[90%] border m-auto mt-6">
-      <h1 className="text-2xl">Next 5 Forecasts (3-hour intervals)</h1>
-      <hr className="mt-2" />
-      <div className="border flex gap-10 overflow-x-auto">
+    <div className="w-[90%] m-auto mt-6">
+      <h1 className="sm:text-3xl text-2xl">Next 5 Forecasts (3-hour intervals)</h1>
+      <hr className="mt-2 mb-5" />
+      <div className="flex gap-10 overflow-x-auto">
         {hourlyData.map((hour, index) => (
           <div key={index}>
-            <div className="border w-40 h-60 bg-white shadow-lg p-2">
+            <div className="border w-40 h-60 bg-white shadow-lg p-2 cursor-pointer">
               {hour.weatherImage && (
                 <img
                   src={hour.weatherImage}
                   alt={hour.weatherNote}
-                  className="bg-black h-30"
+                  className="bg-black h-30 w-full object-cover"
                 />
               )}
-              <div className="flex justify-center gap-1">
+              <div className="flex justify-center gap-1 text-sm mt-2 text-primary">
                 <p>{hour.time}</p>
                 <p>-</p>
                 <p>{hour.temp}°C</p>
