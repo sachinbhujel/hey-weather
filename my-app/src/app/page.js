@@ -1,10 +1,37 @@
-import Image from "next/image";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import MainWeather from "./components/MainWeather";
+import HourlyWeather from "./components/HourlyWeather";
 
 export default function Home() {
-  return (
-    <div>
-      <MainWeather />
-    </div>
-  );
+    const [city, setCity] = useState("");
+
+    useEffect(() => {
+        async function fetchIP() {
+            try {
+                const res = await fetch(
+                    "https://ipinfo.io/json?token=d0666e8c70b5f8"
+                );
+                const ipData = await res.json();
+                console.log(ipData);
+                setCity(ipData.city);
+            } catch (error) {
+                console.log("IP location fetch failed:", error);
+            }
+        }
+
+        fetchIP();
+    }, []);
+
+    return (
+        <main>
+            <div>{city && <MainWeather city={city} />}</div>
+            <HourlyWeather city={city} />
+            {/*
+            <DaysWeather
+                weatherDataAPI={weatherDataAPI}
+            />*/}
+        </main>
+    );
 }

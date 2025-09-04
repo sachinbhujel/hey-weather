@@ -1,137 +1,104 @@
 import React, { useState, useEffect } from "react";
-import { weatherData } from "@/data";
+import { weatherInfo } from "@/data";
 
-function HourlyWeather({ lat, lon, weatherDataAPI }) {
-  const [hourlyData, setHourlyData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+function HourlyWeather({ city }) {
+    const [weather, setWeather] = useState("");
+    const [isDayOrNight, setIsDayOrNight] = useState([]);
+    const dayTime = ["7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"];
+    const nightTime = ["20", "21", "22", "23", "24", "1", "2", "3", "4", "5", "6"];
+    let nextThreeHours;
 
-const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
+    const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
 
-  useEffect(() => {
-    if (!lat || !lon || !WEATHER_API_KEY) return;
+    useEffect(() => {
+        async function fetchHourlyData() {
+            if (!city) return;
 
-    async function fetchHourlyData() {
-      setLoading(true);
-      setError(null);
+            try {
+                const res = await fetch(
+                    `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${WEATHER_API_KEY}&units=metric`
+                );
 
-      try {
-        const res = await fetch(
-          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`
-        );
+                if (!res.ok) {
+                    throw new Error(`API Error: ${res.status}`);
+                }
 
-        if (!res.ok) {
-          throw new Error(`API Error: ${res.status}`);
+                const data = await res.json();
+                setWeather(data);
+                console.log("Hourly Data", data);
+            } catch (err) {
+                console.error("Error fetching hourly weather:", err);
+            }
         }
 
-        const data = await res.json();
+        fetchHourlyData();
+    }, [city]);
 
-        const nextHours = data.list.slice(0, 5).map((item) => {
-          const temp = item.main.temp;
+    useEffect(() => {
+        if (weather) {
+            nextThreeHours = weather.list.slice(1, 7);
 
-          const now = weatherDataAPI.dt;
-          const sunrise = weatherDataAPI.sys?.sunrise;
-          const sunset = weatherDataAPI.sys?.sunset;
-          const isDay = now >= sunrise && now < sunset;
+            nextThreeHours.map((hour) => {
+                const now = hour.dt;
+                const nowDate = new Date(now * 1000);
+                let newNowDate = nowDate.toLocaleTimeString().split(":")[0];
+                const amOrPm = nowDate.toLocaleTimeString().split(" ")[1];
+                if (amOrPm === "PM") {
+                    newNowDate = String(parseInt(newNowDate) + 12);
+                }
 
-          let weatherImage = "";
-          let weatherNote = "";
+                if (dayTime.includes(newNowDate)) {
+                    setIsDayOrNight(prev =>
+                        [...prev, "Day"]
+                    );
+                } else {
+                    setIsDayOrNight(prev =>
+                        [...prev, "Night"]
+                    );
+                }
+            })
+        }
+    }, [weather])
 
-          for (let range in weatherData) {
-            const lastDash = range.lastIndexOf("-");
-            const min = Number(range.slice(0, lastDash));
-            const max = Number(range.slice(lastDash + 1));
+    console.log(isDayOrNight)
 
-            if (temp >= min && temp <= max) {
-              const weatherInfo = isDay
-                ? weatherData[range].day
-                : weatherData[range].night;
-
-              weatherImage = weatherInfo.image;
-              weatherNote = weatherInfo.note;
-              break;
-            }
-          }
-
-          return {
-            temp,
-            weatherImage,
-            weatherNote,
-            time: new Date(item.dt * 1000).toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            }),
-          };
-        });
-
-        setHourlyData(nextHours);
-      } catch (err) {
-        console.error("Error fetching hourly weather:", err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchHourlyData();
-  }, [lat, lon, WEATHER_API_KEY]);
-
-  if (!WEATHER_API_KEY) {
     return (
-      <div>
-        <h1>Weather Forecast</h1>
-        <p>
-          API key not found. Please set WEATHER_API_KEY in your environment.
-        </p>
-      </div>
-    );
-  }
+        <div className="w-[90%] m-auto mt-6">
+            <h1 className="sm:text-3xl text-2xl">
+                Next 5 Forecasts (3-hour intervals)
+            </h1>
+            <hr className="mt-2 mb-5" />
+            <div className="flex gap-10 overflow-x-auto">
+                {nextThreeHours && (
+                    nextThreeHours.map((weather, index) => (
+                        <div key={index}>
+                            <div className="border border-primary w-40 h-60 bg-white shadow-lg p-2 cursor-pointer">
 
-  if (loading) {
-    return (
-      <div>
-        <h1>Next 5 Forecasts (3-hour intervals)</h1>
-        <p>Loading weather data...</p>
-      </div>
-    );
-  }
+                                <img
+                                    src="x"
+                                    alt="x"
+                                    className="bg-black h-32 w-full object-cover"
+                                />
 
-  if (error) {
-    return (
-      <div>
-        <h1>Next 5 Forecasts (3-hour intervals)</h1>
-        <p>Error loading weather data: {error}</p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="w-[90%] m-auto mt-6">
-      <h1 className="sm:text-3xl text-2xl">Next 5 Forecasts (3-hour intervals)</h1>
-      <hr className="mt-2 mb-5" />
-      <div className="flex gap-10 overflow-x-auto">
-        {hourlyData.map((hour, index) => (
-          <div key={index}>
-            <div className="border w-40 h-60 bg-white shadow-lg p-2 cursor-pointer">
-              {hour.weatherImage && (
-                <img
-                  src={hour.weatherImage}
-                  alt={hour.weatherNote}
-                  className="bg-black h-30 w-full object-cover"
-                />
-              )}
-              <div className="flex justify-center gap-1 text-sm mt-2 text-primary">
-                <p>{hour.time}</p>
-                <p>-</p>
-                <p>{hour.temp}°C</p>
-              </div>
+                                <div className="flex justify-center gap-1 text-sm mt-3 text-primary">
+                                    <p>{(() => {
+                                        const time = parseInt(weather.dt_txt.slice(11, 13), 10);
+                                        const hour = time > 12 ? time - 12 : time;
+                                        const meridiem = time >= 12 ? "PM" : "AM";
+                                        return `${hour} ${meridiem}`
+                                    })()}</p>
+                                    <p>-</p>
+                                    <p>{weather.main.temp}°C</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                )
+                }
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+        </div>
+    );
 }
 
 export default HourlyWeather;

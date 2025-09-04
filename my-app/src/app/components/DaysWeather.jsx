@@ -53,13 +53,13 @@ function DaysWeather({ lat, lon, weatherDataAPI }) {
             <h1 className="text-xl sm:text-2xl lg:text-3xl">5 days forecast</h1>
             <hr className="mt-2 mb-4" />
 
-            <div className="bg-primary shadow-md sm:p-4">
-                <div className="hidden sm:flex sm:gap-4 justify-between pb-2 mb-4 text-lg sm:text-xl lg:text-2xl font-medium">
-                    <h2 className="w-[33%] text-left text-background">Day</h2>
-                    <h2 className="w-[33%] text-center text-background">
+            <div className="bg-white border-dashed border-2 border-primary rounded-md shadow-md sm:p-4">
+                <div className="hidden sm:flex sm:gap-4 justify-between pb-2 mb-4 text-lg sm:text-xl lg:text-2xl font-medium border-b pb-2 border-primary">
+                    <h2 className="w-[33%] text-left text">Day</h2>
+                    <h2 className="w-[33%] text-left text-text">
                         Condition
                     </h2>
-                    <h2 className="w-[33%] text-right text-background">
+                    <h2 className="w-[33%] text-left text-text">
                         High/Low
                     </h2>
                 </div>
@@ -74,33 +74,19 @@ function DaysWeather({ lat, lon, weatherDataAPI }) {
                         return (
                             <div
                                 key={index}
-                                className="rounded-md hover:bg-accent p-3 transition-colors"
+                                className="rounded-md mt-3 transition-colors"
                             >
-                                <div className="sm:hidden">
-                                    <div className="flex justify-between items-center mb-2">
-                                        <h3 className="text-lg text-background">
-                                            {dayName}
-                                        </h3>
-                                        <span className="text-lg text-secondary">
-                                            {Math.round(next.main.temp_max)}°/
-                                            {Math.round(next.main.temp_min)}°
-                                        </span>
-                                    </div>
-                                    <p className="text-text">
-                                        {next.weather[0].description}
-                                    </p>
-                                </div>
 
-                                <div className="hidden sm:flex gap-2 sm:gap-4 justify-between items-center">
-                                    <p className="w-[33%] font-medium text-left text-background">
+                                <div className="flex gap-2 sm:gap-4 justify-between items-center border-b border-dashed pb-2 border-primary">
+                                    <p className="w-[33%] font-medium text-left text">
                                         {dayName}
                                     </p>
-                                    <p className="w-[33%] text-center text-background capitalize">
+                                    <p className="w-[33%] text-left text-text capitalize">
                                         {next.weather[0].description}
                                     </p>
-                                    <p className="w-[33%] text-background text-right">
+                                    <p className="w-[33%] text-primary text-left text-lg">
                                         {Math.round(next.main.temp_max)}°/
-                                        {Math.round(next.main.temp_min)}°
+                                        {Math.round(next.main.temp_min)}°C
                                     </p>
                                 </div>
                             </div>

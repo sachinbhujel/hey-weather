@@ -18,7 +18,6 @@
     }
 }
 
-/* Tailwind theme mapping */
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--text);
@@ -29,7 +28,6 @@
     --font-mono: var(--font-geist-mono);
 }
 
-/* Global body style fallback */
 body {
     background: var(--background);
     color: var(--text);

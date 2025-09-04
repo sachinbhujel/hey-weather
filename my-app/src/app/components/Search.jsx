@@ -1,33 +1,32 @@
 import React from "react";
 
-function Search({ setCity, city, setWeatherDataAPI }) {
+function Search({ setCityInput, cityInput }) {
     const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const res = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${WEATHER_API_KEY}&units=metric`
+            `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=${WEATHER_API_KEY}&units=metric`
         );
         const data = await res.json();
-        console.log(data);
-        setWeatherDataAPI(data);
+        console.log("Search Data", data);
     };
 
     return (
-        <div className="flex w-[90%] sm:w-[70%] justify-center m-auto mt-6">
+        <div className="flex w-[70%] sm:w-[50%] justify-center m-auto mt-6">
             <form
                 onSubmit={handleSubmit}
-                className="flex border justify-between w-full items-center gap-1 rounded-full p-2"
+                className="border-2 border-primary rounded-3xl flex justify-between w-full items-center gap-1 p-2 pl-4"
             >
                 <input
                     type="text"
-                    className="w-full p-1 outline-none text-text placeholder-text"
-                    value={city}
+                    className="text-primary placeholder-primary w-full p-1 outline-none"
+                    value={cityInput}
                     placeholder="Search location"
-                    onChange={(e) => setCity(e.target.value)}
+                    onChange={(e) => setCityInput(e.target.value)}
                     required
                 />
-                <div className="rounded-lg bg-background p-1">
+                <div className="rounded-r-full bg-secondary text-primary h-full w-12 pl-1 pr-2 flex justify-center items-center cursor-pointer">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -38,7 +37,7 @@ function Search({ setCity, city, setWeatherDataAPI }) {
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="lucide cursor-pointer lucide-search-icon lucide-search text-accent"
+                        className="lucide lucide-search-icon lucide-search"
                     >
                         <path d="m21 21-4.34-4.34" />
                         <circle cx="11" cy="11" r="8" />

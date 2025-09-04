@@ -2,164 +2,156 @@
 
 import React, { useState, useEffect } from "react";
 import Search from "./Search";
-import { weatherData } from "@/data";
-import HourlyWeather from "./HourlyWeather";
-import DaysWeather from "./DaysWeather";
+import { weatherInfo } from "@/data";
 
-function MainWeather() {
-    const [weatherDataAPI, setWeatherDataAPI] = useState(null);
+function MainWeather({ city }) {
+    const [cityInput, setCityInput] = useState("");
+    const [weather, setWeather] = useState("");
+    const [weatherImg, setWeatherImg] = useState(null);
     const [weatherNote, setWeatherNote] = useState("");
-    const [weatherImg, setWeatherImg] = useState("");
-    const [city, setCity] = useState("");
+
 
     const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
     useEffect(() => {
-        if (city) return;
-
-        async function fetchIP() {
+        async function fetchMainWeatherData() {
             try {
-                const res = await fetch(
-                    "https://api.ipinfo.io/lite/me?token=d0666e8c70b5f8"
-                );
-                const ipData = await res.json();
-                const userCity = ipData.country;
 
-                if (userCity) {
-                    const weatherRes = await fetch(
-                        `https://api.openweathermap.org/data/2.5/weather?q=${userCity}&appid=${WEATHER_API_KEY}&units=metric`
-                    );
-                    const weather = await weatherRes.json();
-                    setWeatherDataAPI(weather);
-                }
+                const weatherRes = await fetch(
+                    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${WEATHER_API_KEY}&units=metric`
+                );
+                const weatherResponse = await weatherRes.json();
+                setWeather(weatherResponse);
+
             } catch (error) {
-                console.log("IP location fetch failed:", error);
+                console.log("Error while fetching weather data.", error);
             }
         }
 
-        fetchIP();
-    }, [city, WEATHER_API_KEY]);
+        fetchMainWeatherData();
+    }, [])
 
     useEffect(() => {
-        if (!weatherDataAPI) return;
+        if (!weather) return;
 
-        const temp = weatherDataAPI.main?.temp;
+        const temp = weather.main?.temp;
 
-        const now = weatherDataAPI.dt;
-        const sunrise = weatherDataAPI.sys?.sunrise;
-        const sunset = weatherDataAPI.sys?.sunset;
+        const now = weather.dt;
+        const sunrise = weather.sys?.sunrise;
+        const sunset = weather.sys?.sunset;
+        
         const isDay = now >= sunrise && now < sunset;
 
-        for (let range in weatherData) {
+        for (let range in weatherInfo) {
             const lastDash = range.lastIndexOf("-");
             const min = Number(range.slice(0, lastDash));
             const max = Number(range.slice(lastDash + 1));
 
             if (temp >= min && temp <= max) {
-                const weatherInfo = isDay
-                    ? weatherData[range].day
-                    : weatherData[range].night;
+                const currentWeatherInfo = isDay
+                    ? weatherInfo[range].day
+                    : weatherInfo[range].night;
 
-                setWeatherNote(weatherInfo.note);
-                setWeatherImg(weatherInfo.image);
+                setWeatherNote(currentWeatherInfo.note);
+                setWeatherImg(currentWeatherInfo.image);
                 break;
             }
         }
-    }, [weatherDataAPI]);
+    }, [weather]);
+
+    const category = [{
+        name: "Humidity",
+        value: `${weather.main?.humidity}%`
+    }, {
+        name: "Wind Speed",
+        value: `${Math.round(weather.wind?.speed * 3.6)} km/h`
+    },
+    {
+        name: "Feels Like",
+        value: `${weather.main?.feels_like}°C`
+    },
+    {
+        name: "Clouds",
+        value: `${weather.clouds?.all}`
+    }
+
+    ];
 
     return (
-        <div>
+        <>
             <Search
-                setCity={setCity}
-                city={city}
-                setWeatherDataAPI={setWeatherDataAPI}
+                setCityInput={setCityInput}
+                cityInput={cityInput}
             />
 
-            {weatherDataAPI ? (
-                weatherDataAPI.name ? (
-                    <div className="flex flex-col gap-10">
-                        <div className="mt-6 p-4 m-auto flex flex-col sm:flex-row justify-center sm:gap-6 gap-10 items-center w-[90%] sm:items-start">
-                            <div className="bg-white shadow-lg p-3 rotate-[-2deg] w-full sm:w-[50%] pb-10">
-                                {weatherImg && (
+
+            <div className="">
+                {weather ? (
+                    weather.name ? (
+                        <div className="flex flex-col gap-8">
+                            <div className="mt-8 sm:h-100 sm:p-4 m-auto flex sm:flex-row justify-center sm:gap-10 gap-6 items-center w-[100%] sm:w-[90%] sm:items-start">
+                                <div className="bg-white border-primary border sm:h-full h-35 shadow-lg sm:p-3 sm:pb-8 pb-8 p-1 rotate-[-2deg] w-35 sm:w-[50%]">
                                     <img
                                         src={weatherImg}
                                         alt={weatherNote}
-                                        className="sm:w-[100%] w-full h-[340px] object-cover"
+                                        className="w-full sm:h-[90%] h-full object-cover"
                                     />
-                                )}
-                                <p className="text-center mt-2 text-primary">
-                                    {weatherDataAPI.name},{" "}
-                                    {weatherDataAPI.sys?.country}
-                                </p>
-                            </div>
-
-                            {weatherNote && (
-                                <div
-                                    className="shadow-md p-4 sm:w-[35%] w-full sm:rotate-2 rotate-1 relative h-max"
-                                    style={{ background: "#FFFFB8" }}
-                                >
-                                    <div className="absolute top-[-11px] left-1/2 bg-accent -translate-x-1/2 w-[80px] h-[20px]"></div>
-                                    <h1 className="text-accent text-2xl mb-2">
-                                        Right Now:
-                                    </h1>
-                                    <p className="">{weatherNote}</p>
+                                    <p className="text-primary text-center sm:mt-2 mt-1 sm:text-xl text-sm font-semibold">
+                                        {weather.name},{" "}
+                                        {weather.sys?.country}
+                                    </p>
                                 </div>
-                            )}
-                        </div>
-                        <div className="flex sm:flex-row flex-col justify-between w-[90%] justify-center m-auto gap-4">
-                            <div className="sm:w-[33.3%] w-full bg-secondary p-2 flex flex-col items-center gap-4 h-30">
-                                <h1 className="text-lg text-center text-text mt-2">
-                                    Temperature
-                                </h1>
-                                <p className="text-3xl text-center text-background">
-                                    {weatherDataAPI.main?.temp}°C
-                                </p>
-                            </div>
-                            <div className="sm:w-[33.3%] w-full p-2 flex flex-col items-center gap-4 bg-secondary h-30">
-                                <h1 className="text-lg text-center text-text mt-2">
-                                    Humidity
-                                </h1>
-                                <p className="text-3xl text-center text-background">
-                                    {weatherDataAPI.main?.humidity}%
-                                </p>
-                            </div>
-                            <div className="sm:w-[33.3%] w-full p-2 flex flex-col items-center gap-4 bg-secondary h-30">
-                                <h1 className="text-lg text-center text-text mt-2">
-                                    Wind Speed
-                                </h1>
-                                <p className="text-3xl text-center text-background">
-                                    {Math.round(
-                                        weatherDataAPI.wind?.speed * 3.6
-                                    )}{" "}
-                                    km/h
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                ) : weatherDataAPI.code === 404 ? (
-                    <p>City not found</p>
-                ) : (
-                    <p>No weather data available</p>
-                )
-            ) : (
-                <p>Loading...</p>
-            )}
 
-            {weatherDataAPI?.coord && (
-                <>
-                    <HourlyWeather
-                        lat={weatherDataAPI.coord.lat}
-                        lon={weatherDataAPI.coord.lon}
-                        weatherDataAPI={weatherDataAPI}
-                    />
-                    <DaysWeather
-                        lat={weatherDataAPI.coord.lat}
-                        lon={weatherDataAPI.coord.lon}
-                        weatherDataAPI={weatherDataAPI}
-                    />
-                </>
-            )}
-        </div>
+                                <div className="flex flex-col sm:gap-8 gap-4 justify-around h-full">
+                                    <div
+                                        className="shadow-md sm:p-4 p-2 sm:w-[260px] w-40 h-max sm:rotate-2 rotate-2 relative"
+                                        style={{ background: "#FFFFB8" }}
+                                    >
+                                        <div className="bg-primary absolute sm:top-[-11px] top-[-5px] left-1/2 -translate-x-1/2 sm:w-[80px] w-[40px] sm:h-[20px] h-[10px]"></div>
+                                        <h1 className="text-accent font-semibold sm:text-2xl text-base mb-1 sm:mb-2">
+                                            Temperature
+                                        </h1>
+                                        <p className="text-primary text-sm sm:text-base">{weather.main?.temp}°C</p>
+                                    </div>
+                                    {weatherNote && (
+                                        <div
+                                            className="shadow-md sm:p-4 p-2 sm:w-[260px] w-40 h-max sm:-rotate-2 -rotate-2 relative"
+                                            style={{ background: "#FFFFB8" }}
+                                        >
+                                            <div className="bg-primary absolute sm:top-[-11px] top-[-5px] left-1/2 -translate-x-1/2 sm:w-[80px] w-[40px] sm:h-[20px] h-[10px]"></div>
+                                            <h1 className="text-accent font-semibold sm:text-2xl text-base sm:mb-2 mb-1">
+                                                Right Now:
+                                            </h1>
+                                            <p className="text-primary text-sm sm:text-base">{weatherNote}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="grid sm:grid-cols-4 grid-cols-2 gap-2 place-items-center w-[90%] m-auto">
+
+                                {category.map((cate, index) => (
+                                    <div key={index} className="w-[100%] sm:h-25 h-20 border-dashed border-2 rounded-lg bg-secondary p-2 flex flex-col items-center justify-center sm:gap-2">
+                                        <h1 className="text-text text-lg font-semibold text-center">
+                                            {cate.name}
+                                        </h1>
+                                        <p className="text-primary font-mono text-2xl text-center font-bold">
+                                            {cate.value}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ) : weather.code === 404 ? (
+                        <p>City not found</p>
+                    ) : (
+                        <p>No weather data available</p>
+                    )
+                ) : (
+                    <p>Loading...</p>
+                )}
+            </div>
+        </>
     );
 }
 
