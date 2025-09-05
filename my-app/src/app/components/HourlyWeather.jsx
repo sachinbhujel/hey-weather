@@ -4,9 +4,10 @@ import { weatherInfo } from "@/data";
 function HourlyWeather({ city }) {
     const [weather, setWeather] = useState("");
     const [isDayOrNight, setIsDayOrNight] = useState([]);
-    const dayTime = ["7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"];
-    const nightTime = ["20", "21", "22", "23", "24", "1", "2", "3", "4", "5", "6"];
+    const dayTime = ["6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"];
+    const nightTime = ["20", "21", "22", "23", "24", "1", "2", "3", "4", "5"];
     const [nextThreeHours, setNextThreeHours] = useState([]);
+    const [timeAndImage, setTimeAndImage] = useState([]);
 
     const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
@@ -25,8 +26,9 @@ function HourlyWeather({ city }) {
 
                 const data = await res.json();
                 setWeather(data);
+                console.log(data);
 
-                const sliced = data.list.slice(1, 7);
+                const sliced = data.list.slice(0, 6);
                 setNextThreeHours(sliced);
 
                 console.log("Hourly Data", data);
@@ -41,6 +43,7 @@ function HourlyWeather({ city }) {
     useEffect(() => {
         if (weather) {
             nextThreeHours.map((hour) => {
+                const temp = hour.main.temp;
                 const now = hour.dt;
                 const nowDate = new Date(now * 1000);
                 let newNowDate = nowDate.toLocaleTimeString().split(":")[0];
@@ -53,45 +56,66 @@ function HourlyWeather({ city }) {
                     setIsDayOrNight(prev =>
                         [...prev, "Day"]
                     );
-                    // if 
+                    for (let range in weatherInfo) {
+                        const lastDash = range.lastIndexOf("-");
+                        const min = Number(range.slice(0, lastDash));
+                        const max = Number(range.slice(lastDash + 1));
+
+                        if (temp >= min && temp <= max) {
+                            setTimeAndImage((prev) => [...prev, {
+                                time: newNowDate > 12 ? newNowDate - 12 : newNowDate,
+                                image: weatherInfo[range].day,
+                                amOrPm: amOrPm
+                            }])
+                            break;
+                        }
+                    }
                 } else {
                     setIsDayOrNight(prev =>
                         [...prev, "Night"]
                     );
+                    for (let range in weatherInfo) {
+                        const lastDash = range.lastIndexOf("-");
+                        const min = Number(range.slice(0, lastDash));
+                        const max = Number(range.slice(lastDash + 1));
+
+                        if (temp >= min && temp <= max) {
+                            setTimeAndImage((prev) => [...prev, {
+                                time: newNowDate > 12 ? newNowDate - 12 : newNowDate,
+                                image: weatherInfo[range].night,
+                                amOrPm: amOrPm
+                            }])
+                            break;
+                        }
+                    }
                 }
             })
         }
     }, [weather])
 
+
+    console.log(timeAndImage)
+
     return (
         <div className="w-[90%] m-auto mt-6">
-            <h1 className="sm:text-3xl text-2xl">
-                Next 5 Forecasts (3-hour intervals)
+            <h1 className="text-primary sm:text-3xl text-2xl font-bold">
+                Hourly Forecast
             </h1>
-            <hr className="mt-2 mb-5" />
-            <div className="flex gap-10 overflow-x-auto">
+            <hr className="border-primary mt-2 mb-5" />
+            <div className="grid grid-cols-3 md:grid-cols-6 m-auto w-full place-items-center md:gap-10 sm:gap-8 gap-6">
                 {nextThreeHours && (
                     nextThreeHours.map((w, index) => (
                         <div key={index}>
-                            <div className="border border-primary w-40 h-60 bg-white shadow-lg p-2 cursor-pointer">
+                            <div className={`shadow-2xl ${index % 2 === 0 ? "rotate-3" : "-rotate-3"} md:h-48 md:w-32 sm:w-30 w-25 h-38 sm:h-45 gap-2 p-2 cursor-pointer flex flex-col`}>
                                 <img
-                                    src="x"
+                                    src={timeAndImage[index]?.image?.image}
                                     alt="x"
-                                    className="bg-black h-32 w-full object-cover"
+                                    className="bg-black md:h-32 sm:h-26 h-22 w-[100%] object-cover"
                                 />
 
-                                <div className="flex justify-center gap-1 text-sm mt-3 text-primary">
-                                    <p>{(() => {
-                                        const time = parseInt(w.dt_txt.slice(11, 13), 10);
-                                        const hour = time > 12 ? time - 12 : time;
-                                        const meridiem = time >= 12 ? "PM" : "AM";
-                                        return `${hour} ${meridiem}`
-                                    })()}</p>
-                                    <p>-</p>
-                                    <p>{w.main.temp}°C</p>
-
-                                    <p>{w.main.info}</p>
-
+                                <div className="flex flex-col justify-center items-center text-primary">
+                                    <p className="text-xs sm:text-sm">{`${timeAndImage[index]?.time} ${timeAndImage[index]?.amOrPm}`}</p>
+                                    <p className="font-bold text-sm sm:text-base">{w.main.temp}°C</p>
                                 </div>
                             </div>
                         </div>

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import MainWeather from "./components/MainWeather";
 import HourlyWeather from "./components/HourlyWeather";
+import DaysWeather from "./components/DaysWeather";
 
 export default function Home() {
     const [city, setCity] = useState("");
@@ -28,10 +29,7 @@ export default function Home() {
         <main>
             <div>{city && <MainWeather city={city} />}</div>
             <HourlyWeather city={city} />
-            {/*
-            <DaysWeather
-                weatherDataAPI={weatherDataAPI}
-            />*/}
+            <DaysWeather city={city} />
         </main>
     );
 }

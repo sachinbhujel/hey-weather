@@ -2,23 +2,17 @@
 
 import React, { useState, useEffect } from "react";
 
-function DaysWeather({ lat, lon, weatherDataAPI }) {
+function DaysWeather({ city }) {
     const [dailyData, setDailyData] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-
     const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
     useEffect(() => {
-        if (!lat || !lon || !WEATHER_API_KEY) return;
+        if (!city) return;
 
         async function fetchDailyData() {
-            setLoading(true);
-            setError(null);
-
             try {
                 const res = await fetch(
-                    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`
+                    `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${WEATHER_API_KEY}&units=metric`
                 );
 
                 if (!res.ok) {
@@ -29,7 +23,7 @@ function DaysWeather({ lat, lon, weatherDataAPI }) {
 
                 let nextDays = [];
                 for (let i = 0; i < data.list.length; i++) {
-                    if (nextDays.length === 5) break;
+                    if (nextDays.length >= 5) break;
                     if (data.list[i].dt_txt.includes("00:00:00")) {
                         nextDays.push(data.list[i]);
                     }
@@ -39,27 +33,24 @@ function DaysWeather({ lat, lon, weatherDataAPI }) {
                 console.log(nextDays);
             } catch (error) {
                 console.error("Error fetching daily weather:", error);
-                setError(err.message);
-            } finally {
-                setLoading(false);
             }
         }
 
         fetchDailyData();
-    }, [lat, lon, WEATHER_API_KEY]);
+    }, [city]);
 
     return (
         <div className="w-[95%] sm:w-[90%] m-auto mt-6 px-2">
-            <h1 className="text-xl sm:text-2xl lg:text-3xl">5 days forecast</h1>
-            <hr className="mt-2 mb-4" />
+            <h1 className="text-primary sm:text-3xl text-2xl font-bold">Daily forecast</h1>
+            <hr className="border-primary mt-2 mb-4" />
 
-            <div className="bg-white border-dashed border-2 border-primary rounded-md shadow-md sm:p-4">
-                <div className="hidden sm:flex sm:gap-4 justify-between pb-2 mb-4 text-lg sm:text-xl lg:text-2xl font-medium border-b pb-2 border-primary">
-                    <h2 className="w-[33%] text-left text">Day</h2>
-                    <h2 className="w-[33%] text-left text-text">
+            <div className="bg-secondary/50 border-primary border-dashed border-2 rounded-md shadow-md p-4">
+                <div className="text-text flex justify-between mb-4 text-2xl font-medium border-b-2 border-dashed pb-2 border-primary">
+                    <h2 className="w-[33.3%] text-left">Day</h2>
+                    <h2 className="w-[33.3%] text-left">
                         Condition
                     </h2>
-                    <h2 className="w-[33%] text-left text-text">
+                    <h2 className="w-[33.3%] text-left">
                         High/Low
                     </h2>
                 </div>
@@ -74,19 +65,19 @@ function DaysWeather({ lat, lon, weatherDataAPI }) {
                         return (
                             <div
                                 key={index}
-                                className="rounded-md mt-3 transition-colors"
+                                className="rounded-md mt-1.5 transition-colors"
                             >
 
-                                <div className="flex gap-2 sm:gap-4 justify-between items-center border-b border-dashed pb-2 border-primary">
-                                    <p className="w-[33%] font-medium text-left text">
+                                <div className="flex justify-between items-center border-b border-dashed border-primary sm:text-xl">
+                                    <p className="w-[33%] font-medium text-left text-primary">
                                         {dayName}
                                     </p>
-                                    <p className="w-[33%] text-left text-text capitalize">
+                                    <p className="text-lg w-[33%] text-primary capitalize">
                                         {next.weather[0].description}
                                     </p>
-                                    <p className="w-[33%] text-primary text-left text-lg">
-                                        {Math.round(next.main.temp_max)}°/
-                                        {Math.round(next.main.temp_min)}°C
+                                    <p className="w-[33%] text-primary text-left font-semibold italic">
+                                        {next.main.temp_max}°/
+                                        {next.main.temp_min}°C
                                     </p>
                                 </div>
                             </div>

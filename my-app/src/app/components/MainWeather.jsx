@@ -148,7 +148,7 @@ function MainWeather({ city }) {
                         <p>No weather data available</p>
                     )
                 ) : (
-                    <p>Loading...</p>
+                  ""
                 )}
             </div>
         </>
