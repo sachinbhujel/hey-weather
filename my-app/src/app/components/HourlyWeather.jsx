@@ -6,10 +6,9 @@ function HourlyWeather({ city }) {
     const [isDayOrNight, setIsDayOrNight] = useState([]);
     const dayTime = ["7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"];
     const nightTime = ["20", "21", "22", "23", "24", "1", "2", "3", "4", "5", "6"];
-    let nextThreeHours;
+    const [nextThreeHours, setNextThreeHours] = useState([]);
 
     const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
-
 
     useEffect(() => {
         async function fetchHourlyData() {
@@ -26,6 +25,10 @@ function HourlyWeather({ city }) {
 
                 const data = await res.json();
                 setWeather(data);
+
+                const sliced = data.list.slice(1, 7);
+                setNextThreeHours(sliced);
+
                 console.log("Hourly Data", data);
             } catch (err) {
                 console.error("Error fetching hourly weather:", err);
@@ -37,8 +40,6 @@ function HourlyWeather({ city }) {
 
     useEffect(() => {
         if (weather) {
-            nextThreeHours = weather.list.slice(1, 7);
-
             nextThreeHours.map((hour) => {
                 const now = hour.dt;
                 const nowDate = new Date(now * 1000);
@@ -52,6 +53,7 @@ function HourlyWeather({ city }) {
                     setIsDayOrNight(prev =>
                         [...prev, "Day"]
                     );
+                    // if 
                 } else {
                     setIsDayOrNight(prev =>
                         [...prev, "Night"]
@@ -61,8 +63,6 @@ function HourlyWeather({ city }) {
         }
     }, [weather])
 
-    console.log(isDayOrNight)
-
     return (
         <div className="w-[90%] m-auto mt-6">
             <h1 className="sm:text-3xl text-2xl">
@@ -71,10 +71,9 @@ function HourlyWeather({ city }) {
             <hr className="mt-2 mb-5" />
             <div className="flex gap-10 overflow-x-auto">
                 {nextThreeHours && (
-                    nextThreeHours.map((weather, index) => (
+                    nextThreeHours.map((w, index) => (
                         <div key={index}>
                             <div className="border border-primary w-40 h-60 bg-white shadow-lg p-2 cursor-pointer">
-
                                 <img
                                     src="x"
                                     alt="x"
@@ -83,13 +82,16 @@ function HourlyWeather({ city }) {
 
                                 <div className="flex justify-center gap-1 text-sm mt-3 text-primary">
                                     <p>{(() => {
-                                        const time = parseInt(weather.dt_txt.slice(11, 13), 10);
+                                        const time = parseInt(w.dt_txt.slice(11, 13), 10);
                                         const hour = time > 12 ? time - 12 : time;
                                         const meridiem = time >= 12 ? "PM" : "AM";
                                         return `${hour} ${meridiem}`
                                     })()}</p>
                                     <p>-</p>
-                                    <p>{weather.main.temp}°C</p>
+                                    <p>{w.main.temp}°C</p>
+
+                                    <p>{w.main.info}</p>
+
                                 </div>
                             </div>
                         </div>
