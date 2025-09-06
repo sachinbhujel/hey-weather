@@ -3,9 +3,8 @@ import { weatherInfo } from "@/data";
 
 function HourlyWeather({ city }) {
     const [weather, setWeather] = useState("");
-    const [isDayOrNight, setIsDayOrNight] = useState([]);
     const dayTime = ["6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"];
-    const nightTime = ["20", "21", "22", "23", "24", "1", "2", "3", "4", "5"];
+    //const nightTime = ["20", "21", "22", "23", "24", "1", "2", "3", "4", "5"];
     const [nextThreeHours, setNextThreeHours] = useState([]);
     const [timeAndImage, setTimeAndImage] = useState([]);
 
@@ -29,8 +28,6 @@ function HourlyWeather({ city }) {
 
                 const sliced = data.list.slice(0, 6);
                 setNextThreeHours(sliced);
-
-                console.log("Hourly Data", data);
             } catch (err) {
                 console.error("Error fetching hourly weather:", err);
             }
@@ -55,9 +52,6 @@ function HourlyWeather({ city }) {
                 }
 
                 if (dayTime.includes(newNowDate)) {
-                    setIsDayOrNight(prev =>
-                        [...prev, "Day"]
-                    );
                     for (let range in weatherInfo) {
                         const lastDash = range.lastIndexOf("-");
                         const min = Number(range.slice(0, lastDash));
@@ -73,9 +67,6 @@ function HourlyWeather({ city }) {
                         }
                     }
                 } else {
-                    setIsDayOrNight(prev =>
-                        [...prev, "Night"]
-                    );
                     for (let range in weatherInfo) {
                         const lastDash = range.lastIndexOf("-");
                         const min = Number(range.slice(0, lastDash));

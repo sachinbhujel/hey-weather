@@ -72,12 +72,12 @@
         --secondary: #8a481e;
         --accent: #e17c3d;
     }
-    .t2{
-        --text: #1f1f0a;
-  --background: #fbfbf4;
-  --primary: #c3b746;
-  --secondary: #9aaedf;
-  --accent: #b26cd0;
+    .royal-eclipse {
+        --text: #f5f5e0;
+        --background: #0b0b04;
+        --primary: #b9ac3c;
+        --secondary: #203365;
+        --accent: #752f93;
     }
 }
 

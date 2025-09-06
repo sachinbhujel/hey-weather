@@ -1,15 +1,11 @@
 import React from "react";
 
-function Search({ city, setCity }) {
+function Search({ setCity, searchInput, setSearchInput }) {
     const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${WEATHER_API_KEY}&units=metric`
-        );
-        const data = await res.json();
-        console.log("Search Data", data);
+        setCity(searchInput);
     };
 
     return (
@@ -22,13 +18,13 @@ function Search({ city, setCity }) {
                     type="text"
                     className="text-primary placeholder-primary w-full p-1 outline-none"
                     placeholder="Search location"
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
+                    value={searchInput}
+                    onChange={(e) => setSearchInput(e.target.value)}
                     required
                 />
                 <button
                     type="submit"
-                    className="rounded-r-full bg-secondary/60 text-primary h-full w-12 pl-1 pr-2 flex justify-center items-center cursor-pointer"
+                    className="rounded-r-full bg-secondary/60 text-primary hover:bg-primary hover:text-secondary h-full w-12 pl-1 pr-2 flex justify-center items-center cursor-pointer"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

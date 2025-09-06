@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 
 function DaysWeather({ city }) {
-    const [dailyData, setDailyData] = useState([]);
+    const [nextDayWeather, setNextDayWeather] = useState([]);
     const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
     useEffect(() => {
@@ -29,7 +29,7 @@ function DaysWeather({ city }) {
                     }
                 }
 
-                setDailyData(nextDays);
+                setNextDayWeather(nextDays);
             } catch (error) {
                 console.error("Error fetching daily weather:", error);
             }
@@ -55,7 +55,7 @@ function DaysWeather({ city }) {
                 </div>
 
                 <div className="flex flex-col gap-2 sm:gap-3">
-                    {dailyData.map((next, index) => {
+                    {nextDayWeather.map((next, index) => {
                         const date = new Date(next.dt_txt);
                         const dayName = date.toLocaleDateString("en-US", {
                             weekday: "long",
