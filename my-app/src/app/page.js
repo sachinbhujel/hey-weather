@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import MainWeather from "./components/MainWeather";
 import HourlyWeather from "./components/HourlyWeather";
 import DaysWeather from "./components/DaysWeather";
+import Search from "./components/Search";
 
 export default function Home() {
     const [city, setCity] = useState("");
@@ -27,9 +28,14 @@ export default function Home() {
 
     return (
         <main>
-            <div>{city && <MainWeather city={city} />}</div>
-            <HourlyWeather city={city} />
-            <DaysWeather city={city} />
+            <Search city={city} setCity={setCity}/>
+              {city && (
+      <>
+        <MainWeather city={city} />
+        <HourlyWeather city={city} />
+        <DaysWeather city={city} />
+      </>
+    )}
         </main>
     );
 }

@@ -44,8 +44,8 @@ function DaysWeather({ city }) {
             <h1 className="text-primary sm:text-3xl text-2xl font-bold">Daily forecast</h1>
             <hr className="border-primary mt-2 mb-4" />
 
-            <div className="bg-secondary/50 border-primary border-dashed border-2 rounded-md shadow-md p-4">
-                <div className="border-primary hidden text-text sm:flex justify-between mb-4 text-2xl font-medium border-b-2 border-dashed pb-2">
+            <div className="bg-secondary/60 border-primary border-dashed border-2 rounded-md shadow-md p-4">
+                <div className="border-primary hidden text-primary sm:flex justify-between mb-4 text-2xl font-bold border-b-2 border-dashed pb-2">
                     <h2 className="w-[33.3%] text-left">Day</h2>
                     <h2 className="w-[33.3%] text-left">
                         Condition
@@ -65,7 +65,7 @@ function DaysWeather({ city }) {
                         return (
                             <div
                                 key={index}
-                                className="rounded-md mt-1.5 transition-colors"
+                                className="rounded-md transition-colors"
                             >
 
                                 <div className="text-primary sm:flex sm:justify-between sm:items-center border-b border-dashed border-primary sm:text-xl">
@@ -75,7 +75,7 @@ function DaysWeather({ city }) {
                                     <p className="text-lg sm:w-[33%] capitalize">
                                         {next.weather[0].description}
                                     </p>
-                                    <p className="sm:w-[33%] text-left font-semibold italic">
+                                    <p className="sm:w-[33%] text-left font-semibold italic text-xl mb-2">
                                         {next.main.temp_max}°/
                                         {next.main.temp_min}°C
                                     </p>

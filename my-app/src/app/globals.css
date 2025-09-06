@@ -10,6 +10,62 @@
         --accent: #c25d1e;
     }
     .dark {
+        --text: #fff7f0;
+        --background: #0a0600;
+        --primary: #f27107;
+        --secondary: #047a7c;
+        --accent: #0623c6;
+    }
+    .blueish {
+        --text: #050315;
+        --background: #fbfbfe;
+        --primary: #2f27ce;
+        --secondary: #dedcff;
+        --accent: #433bff;
+    }
+    .sandstone {
+        --text: #161513;
+        --background: #f8f8f6;
+        --primary: #a39d60;
+        --secondary: #d7d2a7;
+        --accent: #c9c16a;
+    }
+    .t3 {
+        --text: #0b050d;
+        --background: #f8f2fa;
+        --primary: #a151c1;
+        --secondary: #d891ba;
+        --accent: #cb6c94;
+    }
+    .pink-neon {
+        --text: #f9ddf4;
+        --background: #110310;
+        --primary: #d629d0;
+        --secondary: #741626;
+        --accent: #a3211f;
+    }
+    .green-neon {
+        --text: #f4fbf7;
+        --background: #020303;
+        --primary: #36b56d;
+        --secondary: #196b3d;
+        --accent: #1daa58;
+    }
+    .pastel-breeze {
+        --text: #070a0d;
+        --background: #f9fbfc;
+        --primary: #5c87b5;
+        --secondary: #94b3d4;
+        --accent: #75a0ce;
+    }
+    .candy-sky {
+        --text: #040d20;
+        --background: #f2f6fd;
+        --primary: #2e77e5;
+        --secondary: #ef81ca;
+        --accent: #e94e60;
+    }
+    .choco {
         --text: #f1e9e4;
         --background: #120a07;
         --primary: #e2b79d;

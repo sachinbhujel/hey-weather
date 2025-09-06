@@ -5,7 +5,6 @@ import Search from "./Search";
 import { weatherInfo } from "@/data";
 
 function MainWeather({ city }) {
-    const [cityInput, setCityInput] = useState("");
     const [weather, setWeather] = useState("");
     const [weatherImg, setWeatherImg] = useState(null);
     const [weatherNote, setWeatherNote] = useState("");
@@ -29,7 +28,7 @@ function MainWeather({ city }) {
         }
 
         fetchMainWeatherData();
-    }, [])
+    }, [city])
 
     useEffect(() => {
         if (!weather) return;
@@ -39,7 +38,7 @@ function MainWeather({ city }) {
         const now = weather.dt;
         const sunrise = weather.sys?.sunrise;
         const sunset = weather.sys?.sunset;
-        
+
         const isDay = now >= sunrise && now < sunset;
 
         for (let range in weatherInfo) {
@@ -79,22 +78,16 @@ function MainWeather({ city }) {
 
     return (
         <>
-            <Search
-                setCityInput={setCityInput}
-                cityInput={cityInput}
-            />
-
-
-            <div className="">
+            <div>
                 {weather ? (
                     weather.name ? (
                         <div className="flex flex-col gap-8">
                             <div className="mt-8 sm:h-100 sm:p-4 m-auto flex sm:flex-row justify-center sm:gap-10 gap-6 items-center w-[100%] sm:w-[90%] sm:items-start">
-                                <div className="bg-white border-primary border sm:h-full h-35 shadow-lg sm:p-3 sm:pb-8 pb-8 p-1 rotate-[-2deg] w-35 sm:w-[50%]">
+                                <div className="bg-background border-primary border-2 rounded sm:h-full h-35 shadow-lg shadow-accent sm:p-3 sm:pb-8 pb-8 p-1 rotate-[-2deg] w-35 sm:w-[50%] -z-1">
                                     <img
                                         src={weatherImg}
                                         alt={weatherNote}
-                                        className="w-full sm:h-[90%] h-full object-cover"
+                                        className="w-full sm:h-[90%] h-full object-cover border-primary"
                                     />
                                     <p className="text-primary text-center sm:mt-2 mt-1 sm:text-xl text-sm font-semibold">
                                         {weather.name},{" "}
@@ -102,27 +95,25 @@ function MainWeather({ city }) {
                                     </p>
                                 </div>
 
-                                <div className="flex flex-col sm:gap-8 gap-4 justify-around h-full">
+                                <div className="flex flex-col sm:gap-8 gap-4 justify-around h-full -z-1">
                                     <div
-                                        className="shadow-md sm:p-4 p-2 sm:w-[260px] w-40 h-max sm:rotate-2 rotate-2 relative"
-                                        style={{ background: "#FFFFB8" }}
+                                        className="dark:bg-[#ffffd9] bg-#FFFFB8 shadow-md shadow-accent sm:p-4 p-2 sm:w-[260px] w-40 h-max sm:rotate-2 rotate-2 relative"
                                     >
                                         <div className="bg-primary absolute sm:top-[-11px] top-[-5px] left-1/2 -translate-x-1/2 sm:w-[80px] w-[40px] sm:h-[20px] h-[10px]"></div>
                                         <h1 className="text-accent font-semibold sm:text-2xl text-base mb-1 sm:mb-2">
                                             Temperature
                                         </h1>
-                                        <p className="text-primary text-sm sm:text-base">{weather.main?.temp}°C</p>
+                                        <p className="text-accent text-sm sm:text-base">{weather.main?.temp}°C</p>
                                     </div>
                                     {weatherNote && (
                                         <div
-                                            className="shadow-md sm:p-4 p-2 sm:w-[260px] w-40 h-max sm:-rotate-2 -rotate-2 relative"
-                                            style={{ background: "#FFFFB8" }}
+                                            className="dark:bg-[#ffffd9] bg-#FFFFB8 shadow-md shadow-accent sm:p-4 p-2 sm:w-[260px] w-40 h-max sm:-rotate-2 -rotate-2 relative"
                                         >
                                             <div className="bg-primary absolute sm:top-[-11px] top-[-5px] left-1/2 -translate-x-1/2 sm:w-[80px] w-[40px] sm:h-[20px] h-[10px]"></div>
                                             <h1 className="text-accent font-semibold sm:text-2xl text-base sm:mb-2 mb-1">
                                                 Right Now:
                                             </h1>
-                                            <p className="text-primary text-sm sm:text-base">{weatherNote}</p>
+                                            <p className="text-accent text-sm sm:text-base">{weatherNote}</p>
                                         </div>
                                     )}
                                 </div>
@@ -131,7 +122,7 @@ function MainWeather({ city }) {
                             <div className="grid sm:grid-cols-4 grid-cols-2 gap-2 place-items-center w-[90%] m-auto">
 
                                 {category.map((cate, index) => (
-                                    <div key={index} className="bg-secondary w-[100%] sm:h-25 h-20 border-dashed border-2 rounded-lg p-2 flex flex-col items-center justify-center sm:gap-2">
+                                    <div key={index} className="bg-secondary/60 w-[100%] sm:h-25 h-20 border-dashed border-primary border-2 rounded-lg p-2 flex flex-col items-center justify-center sm:gap-2">
                                         <h1 className="text-text text-lg font-semibold text-center">
                                             {cate.name}
                                         </h1>
@@ -148,7 +139,7 @@ function MainWeather({ city }) {
                         <p>No weather data available</p>
                     )
                 ) : (
-                  ""
+                    ""
                 )}
             </div>
         </>

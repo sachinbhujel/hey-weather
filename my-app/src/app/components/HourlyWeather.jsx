@@ -97,7 +97,7 @@ function HourlyWeather({ city }) {
     console.log(timeAndImage)
 
     return (
-        <div className="w-[90%] m-auto mt-6">
+        <div className="w-[90%] m-auto mt-6 pb-6">
             <h1 className="text-primary sm:text-3xl text-2xl font-bold">
                 Hourly Forecast
             </h1>
@@ -106,11 +106,11 @@ function HourlyWeather({ city }) {
                 {nextThreeHours && (
                     nextThreeHours.map((w, index) => (
                         <div key={index}>
-                            <div className={`shadow-2xl ${index % 2 === 0 ? "rotate-3" : "-rotate-3"} md:h-48 md:w-32 sm:w-30 w-25 h-38 sm:h-45 gap-2 p-2 cursor-pointer flex flex-col`}>
+                            <div className={`shadow-lg shadow-accent ${index % 2 === 0 ? "rotate-3" : "-rotate-3"} border-primary border-2 md:h-50 md:w-32 sm:w-30 w-25 h-38 sm:h-45 gap-2 p-2 cursor-pointer flex flex-col`}>
                                 <img
                                     src={timeAndImage[index]?.image?.image}
                                     alt="x"
-                                    className="bg-black md:h-32 sm:h-26 h-22 w-[100%] object-cover"
+                                    className="bg-black border-primary border-2 md:h-32 sm:h-26 h-22 w-[100%] object-cover"
                                 />
 
                                 <div className="text-primary flex flex-col justify-center items-center">
