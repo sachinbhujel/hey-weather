@@ -96,7 +96,7 @@ function MainWeather({ city }) {
 
                                 <div className="flex flex-col sm:gap-8 gap-6 justify-around h-full -z-1">
                                     <div
-                                        className="dark:bg-[#ffffd9] bg-#FFFFB8 shadow-md shadow-accent sm:p-4 p-2 sm:w-[260px] w-40 h-max sm:rotate-2 rotate-2 relative"
+                                        className="dark:bg-[#ffffd9] bg-#FFFFB8 shadow-md shadow-accent sm:p-4 p-2 sm:w-[260px] w-40 h-max sm:rotate-2 rotate-2 relative border-[1px]"
                                     >
                                         <div className="bg-primary absolute sm:top-[-11px] top-[-5px] left-1/2 -translate-x-1/2 sm:w-[80px] w-[40px] sm:h-[20px] h-[10px]"></div>
                                         <h3 className="text-accent font-medium sm:text-xl text-base mb-1 sm:mb-2">
@@ -106,7 +106,7 @@ function MainWeather({ city }) {
                                     </div>
                                     {weatherNote && (
                                         <div
-                                            className="dark:bg-[#ffffd9] bg-#FFFFB8 shadow-md shadow-accent sm:p-4 p-2 sm:w-[260px] w-40 h-max sm:-rotate-2 -rotate-2 relative"
+                                            className="dark:bg-[#ffffd9] bg-#FFFFB8 shadow-md shadow-accent sm:p-4 p-2 sm:w-[260px] w-40 h-max sm:-rotate-2 -rotate-2 relative border-[1px]"
                                         >
                                             <div className="bg-primary absolute sm:top-[-11px] top-[-5px] left-1/2 -translate-x-1/2 sm:w-[80px] w-[40px] sm:h-[20px] h-[10px]"></div>
                                             <h3 className="text-accent font-medium sm:text-xl text-base sm:mb-2 mb-1">

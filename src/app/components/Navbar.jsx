@@ -129,6 +129,14 @@ function Navbar() {
                                 >
                                     Choco
                                 </a>
+                                <a
+                                    href="#"
+                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors"
+                                    role="menuitem"
+                                    onClick={() => handleTheme("t2")}
+                                >
+                                    Choco
+                                </a>
                             </div>
                         </div>
                     )}

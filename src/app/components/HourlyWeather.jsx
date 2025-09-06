@@ -45,10 +45,9 @@ function HourlyWeather({ city }) {
                 const temp = hour.main.temp;
                 const now = hour.dt;
                 const nowDate = new Date(now * 1000);
-                let timeString = nowDate.toLocaleTimeString("en-US", {hour12: true});
-                alert(timeString);
-                let newNowDate = nowDate.toLocaleTimeString().split(":")[0];
-                let amOrPm = nowDate.toLocaleTimeString().split(" ")[1];
+                let timeString = nowDate.toLocaleTimeString("en-US", { hour12: true });
+                let newNowDate = timeString.split(":")[0];
+                let amOrPm = timeString.split(" ")[1];
                 if (amOrPm === "PM" && newNowDate > 12) {
                     newNowDate += 0;
                 } else if (amOrPm === "PM") {
