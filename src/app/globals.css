@@ -89,3 +89,12 @@ body {
     color: var(--text);
     font-family: "Rethink Sans", sans-serif;
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--primary); /* your primary color */
+    border-radius: 10px;
+}

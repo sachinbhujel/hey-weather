@@ -26,7 +26,6 @@ function HourlyWeather({ city }) {
 
                 const data = await res.json();
                 setWeather(data);
-                console.log(data);
 
                 const sliced = data.list.slice(0, 6);
                 setNextThreeHours(sliced);
@@ -48,9 +47,10 @@ function HourlyWeather({ city }) {
                 const nowDate = new Date(now * 1000);
                 let newNowDate = nowDate.toLocaleTimeString().split(":")[0];
                 const amOrPm = nowDate.toLocaleTimeString().split(" ")[1];
-                if (amOrPm === "PM" && newNowDate > 12){
-                    newNowDate+=0;
-                } else if(amOrPm === "PM") {
+                alert(nowDate.toLocaleTimeString());
+                if (amOrPm === "PM" && newNowDate > 12) {
+                    newNowDate += 0;
+                } else if (amOrPm === "PM") {
                     newNowDate = String(parseInt(newNowDate) + 12);
                 }
 
@@ -95,8 +95,6 @@ function HourlyWeather({ city }) {
         }
     }, [weather])
 
-
-    console.log(timeAndImage)
 
     return (
         <div className="w-[90%] m-auto mt-6 pb-4">

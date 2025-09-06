@@ -30,7 +30,6 @@ function DaysWeather({ city }) {
                 }
 
                 setDailyData(nextDays);
-                console.log(nextDays);
             } catch (error) {
                 console.error("Error fetching daily weather:", error);
             }
