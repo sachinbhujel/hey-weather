@@ -48,7 +48,9 @@ function HourlyWeather({ city }) {
                 const nowDate = new Date(now * 1000);
                 let newNowDate = nowDate.toLocaleTimeString().split(":")[0];
                 const amOrPm = nowDate.toLocaleTimeString().split(" ")[1];
-                if (amOrPm === "PM") {
+                if (amOrPm === "PM" && newNowDate > 12){
+                    newNowDate+=0;
+                } else if(amOrPm === "PM") {
                     newNowDate = String(parseInt(newNowDate) + 12);
                 }
 
@@ -97,7 +99,7 @@ function HourlyWeather({ city }) {
     console.log(timeAndImage)
 
     return (
-        <div className="w-[90%] m-auto mt-6 pb-6">
+        <div className="w-[90%] m-auto mt-6 pb-4">
             <h1 className="text-primary sm:text-3xl text-2xl font-bold">
                 Hourly Forecast
             </h1>
@@ -106,7 +108,7 @@ function HourlyWeather({ city }) {
                 {nextThreeHours && (
                     nextThreeHours.map((w, index) => (
                         <div key={index}>
-                            <div className={`shadow-lg shadow-accent ${index % 2 === 0 ? "rotate-3" : "-rotate-3"} border-primary border-2 md:h-50 md:w-32 sm:w-30 w-25 h-38 sm:h-45 gap-2 p-2 cursor-pointer flex flex-col`}>
+                            <div className={`shadow-lg shadow-accent ${index % 2 === 0 ? "rotate-3" : "-rotate-3"} border-primary border-2 md:h-50 md:w-32 sm:w-30 w-23 h-36 sm:h-45 gap-2 sm:p-2 p-1 cursor-pointer flex flex-col`}>
                                 <img
                                     src={timeAndImage[index]?.image?.image}
                                     alt="x"

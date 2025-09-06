@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Search from "./Search";
 import { weatherInfo } from "@/data";
 
 function MainWeather({ city }) {
@@ -95,24 +94,24 @@ function MainWeather({ city }) {
                                     </p>
                                 </div>
 
-                                <div className="flex flex-col sm:gap-8 gap-4 justify-around h-full -z-1">
+                                <div className="flex flex-col sm:gap-8 gap-6 justify-around h-full -z-1">
                                     <div
                                         className="dark:bg-[#ffffd9] bg-#FFFFB8 shadow-md shadow-accent sm:p-4 p-2 sm:w-[260px] w-40 h-max sm:rotate-2 rotate-2 relative"
                                     >
                                         <div className="bg-primary absolute sm:top-[-11px] top-[-5px] left-1/2 -translate-x-1/2 sm:w-[80px] w-[40px] sm:h-[20px] h-[10px]"></div>
-                                        <h1 className="text-accent font-semibold sm:text-2xl text-base mb-1 sm:mb-2">
+                                        <h3 className="text-accent font-medium sm:text-xl text-base mb-1 sm:mb-2">
                                             Temperature
-                                        </h1>
-                                        <p className="text-accent text-sm sm:text-base">{weather.main?.temp}°C</p>
+                                        </h3>
+                                        <p className="text-accent text-xl font-semibold sm:text-3xl">{weather.main?.temp}°C</p>
                                     </div>
                                     {weatherNote && (
                                         <div
                                             className="dark:bg-[#ffffd9] bg-#FFFFB8 shadow-md shadow-accent sm:p-4 p-2 sm:w-[260px] w-40 h-max sm:-rotate-2 -rotate-2 relative"
                                         >
                                             <div className="bg-primary absolute sm:top-[-11px] top-[-5px] left-1/2 -translate-x-1/2 sm:w-[80px] w-[40px] sm:h-[20px] h-[10px]"></div>
-                                            <h1 className="text-accent font-semibold sm:text-2xl text-base sm:mb-2 mb-1">
+                                            <h3 className="text-accent font-medium sm:text-xl text-base sm:mb-2 mb-1">
                                                 Right Now:
-                                            </h1>
+                                            </h3>
                                             <p className="text-accent text-sm sm:text-base">{weatherNote}</p>
                                         </div>
                                     )}
@@ -122,11 +121,11 @@ function MainWeather({ city }) {
                             <div className="grid sm:grid-cols-4 grid-cols-2 gap-2 place-items-center w-[90%] m-auto">
 
                                 {category.map((cate, index) => (
-                                    <div key={index} className="bg-secondary/60 w-[100%] sm:h-25 h-20 border-dashed border-primary border-2 rounded-lg p-2 flex flex-col items-center justify-center sm:gap-2">
-                                        <h1 className="text-text text-lg font-semibold text-center">
+                                    <div key={index} className="bg-secondary/60 w-[100%] sm:h-25 h-16 border-dashed border-primary border-2 rounded-lg p-2 flex flex-col items-center justify-center sm:gap-2">
+                                        <h1 className="text-text sm:text-lg text-sm font-semibold text-center">
                                             {cate.name}
                                         </h1>
-                                        <p className="text-primary font-mono text-2xl text-center font-bold">
+                                        <p className="text-primary sm:text-2xl text-xl text-center font-bold">
                                             {cate.value}
                                         </p>
                                     </div>
