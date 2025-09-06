@@ -113,7 +113,7 @@ function HourlyWeather({ city }) {
                                     className="bg-black md:h-32 sm:h-26 h-22 w-[100%] object-cover"
                                 />
 
-                                <div className="flex flex-col justify-center items-center text-primary">
+                                <div className="text-primary flex flex-col justify-center items-center">
                                     <p className="text-xs sm:text-sm">{`${timeAndImage[index]?.time} ${timeAndImage[index]?.amOrPm}`}</p>
                                     <p className="font-bold text-sm sm:text-base">{w.main.temp}°C</p>
                                 </div>

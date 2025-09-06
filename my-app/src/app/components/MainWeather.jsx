@@ -131,7 +131,7 @@ function MainWeather({ city }) {
                             <div className="grid sm:grid-cols-4 grid-cols-2 gap-2 place-items-center w-[90%] m-auto">
 
                                 {category.map((cate, index) => (
-                                    <div key={index} className="w-[100%] sm:h-25 h-20 border-dashed border-2 rounded-lg bg-secondary p-2 flex flex-col items-center justify-center sm:gap-2">
+                                    <div key={index} className="bg-secondary w-[100%] sm:h-25 h-20 border-dashed border-2 rounded-lg p-2 flex flex-col items-center justify-center sm:gap-2">
                                         <h1 className="text-text text-lg font-semibold text-center">
                                             {cate.name}
                                         </h1>

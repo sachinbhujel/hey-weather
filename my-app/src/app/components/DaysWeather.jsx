@@ -45,7 +45,7 @@ function DaysWeather({ city }) {
             <hr className="border-primary mt-2 mb-4" />
 
             <div className="bg-secondary/50 border-primary border-dashed border-2 rounded-md shadow-md p-4">
-                <div className="text-text flex justify-between mb-4 text-2xl font-medium border-b-2 border-dashed pb-2 border-primary">
+                <div className="border-primary hidden text-text sm:flex justify-between mb-4 text-2xl font-medium border-b-2 border-dashed pb-2">
                     <h2 className="w-[33.3%] text-left">Day</h2>
                     <h2 className="w-[33.3%] text-left">
                         Condition
@@ -68,14 +68,14 @@ function DaysWeather({ city }) {
                                 className="rounded-md mt-1.5 transition-colors"
                             >
 
-                                <div className="flex justify-between items-center border-b border-dashed border-primary sm:text-xl">
-                                    <p className="w-[33%] font-medium text-left text-primary">
+                                <div className="text-primary sm:flex sm:justify-between sm:items-center border-b border-dashed border-primary sm:text-xl">
+                                    <p className="sm:w-[33%] font-medium text-left text-2xl">
                                         {dayName}
                                     </p>
-                                    <p className="text-lg w-[33%] text-primary capitalize">
+                                    <p className="text-lg sm:w-[33%] capitalize">
                                         {next.weather[0].description}
                                     </p>
-                                    <p className="w-[33%] text-primary text-left font-semibold italic">
+                                    <p className="sm:w-[33%] text-left font-semibold italic">
                                         {next.main.temp_max}°/
                                         {next.main.temp_min}°C
                                     </p>
