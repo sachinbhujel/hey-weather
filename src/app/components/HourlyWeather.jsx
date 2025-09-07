@@ -97,11 +97,11 @@ function HourlyWeather({ city }) {
                 {nextThreeHours && (
                     nextThreeHours.map((w, index) => (
                         <div key={index}>
-                            <div className={`shadow-lg shadow-accent ${index % 2 === 0 ? "rotate-3" : "-rotate-3"} border-primary border-2 md:h-50 md:w-32 sm:w-30 w-23 h-36 sm:h-45 gap-2 sm:p-2 p-1 cursor-pointer flex flex-col`}>
+                            <div className={`shadow-md shadow-accent ${index % 2 === 0 ? "rotate-3" : "-rotate-3"} hover:rotate-0 border-primary border-2 md:h-50 md:w-32 sm:w-30 w-23 h-36 sm:h-45 gap-2 sm:p-2 p-1 cursor-pointer flex flex-col`}>
                                 <img
                                     src={timeAndImage[index]?.image?.image}
                                     alt="x"
-                                    className="bg-black border-primary border-2 md:h-32 sm:h-26 h-22 w-[100%] object-cover"
+                                    className="bg-black md:h-32 sm:h-26 h-22 w-[100%] object-cover"
                                 />
 
                                 <div className="text-primary flex flex-col justify-center items-center">
