@@ -19,8 +19,11 @@ function Navbar() {
 
     return (
         <div className="bg-secondary/60 border-primary shadow-md flex items-center justify-between border-2 px-4 py-2 w-[100%] sm:w-[90%] rounded-xl m-auto">
+
             <div className="flex items-center gap-1">
-                <h1 className="text-xl text-primary font-semibold">Weather</h1>
+                <a href="/">
+                    <h1 className="text-xl text-primary font-semibold"><span className="text-lg">hey</span>Weather</h1>
+                </a>
             </div>
             <div className="flex items-center gap-2">
                 <div className="relative inline-flex text-primary">
@@ -65,111 +68,98 @@ function Navbar() {
                             className="bg-background absolute end-0 top-12 w-56 h-45 custom-scrollbar overflow-auto rounded border border-primary shadow-sm"
                         >
                             <div>
-                                <a
-                                    href="#"
-                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text"
+                                <button
+                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 w-full text-left text-sm font-medium text-text cursor-pointer"
                                     role="menuitem"
                                     onClick={() => handleTheme("light")}
                                 >
                                     Default
-                                </a>
+                                </button>
 
-                                <a
-                                    href="#"
-                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors"
+                                <button
+                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors w-full text-left cursor-pointer"
                                     role="menuitem"
                                     onClick={() => handleTheme("blueish")}
                                 >
                                     Blueish
-                                </a>
-                                <a
-                                    href="#"
-                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors"
+                                </button>
+                                <button
+                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors w-full text-left cursor-pointer"
                                     role="menuitem"
                                     onClick={() => handleTheme("pinkish")}
                                 >
                                     Pinkish
-                                </a>
-                                <a
-                                    href="#"
-                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors"
+                                </button>
+                                <button
+                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors w-full text-left cursor-pointer"
                                     role="menuitem"
                                     onClick={() => handleTheme("sandstone")}
                                 >
                                     Sandstone
-                                </a>
-                                <a
-                                    href="#"
-                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors"
+                                </button>
+                                <button
+                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors w-full text-left cursor-pointer"
                                     role="menuitem"
                                     onClick={() => handleTheme("pink-neon")}
                                 >
                                     Pink Neon
-                                </a>
-                                <a
-                                    href="#"
-                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors"
+                                </button>
+                                <button
+                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors w-full text-left cursor-pointer" 
                                     role="menuitem"
                                     onClick={() => handleTheme("green-neon")}
                                 >
                                     Green Neon
-                                </a>
-                                <a
-                                    href="#"
-                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors"
+                                </button>
+                                <button
+                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors w-full text-left cursor-pointer"
                                     role="menuitem"
                                     onClick={() => handleTheme("pastel-breeze")}
                                 >
                                     Pastel Breeze
-                                </a>
-                                <a
-                                    href="#"
-                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors"
+                                </button>
+                                <button
+                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors w-full text-left cursor-pointer"
                                     role="menuitem"
                                     onClick={() => handleTheme("candy-sky")}
                                 >
                                     Candy Sky
-                                </a>
-                                <a
-                                    href="#"
-                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors"
+                                </button>
+                                <button
+                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors w-full text-left cursor-pointer"
                                     role="menuitem"
                                     onClick={() => handleTheme("choco")}
                                 >
                                     Dark Cocoa
-                                </a>
-                                <a
-                                    href="#"
-                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors"
+                                </button>
+                                <button
+                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors w-full text-left cursor-pointer "
                                     role="menuitem"
                                     onClick={() => handleTheme("royal-eclipse")}
                                 >
                                     Royal Eclipse
-                                </a>
-                                <a
-                                    href="#"
-                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors"
+                                </button>
+                                <button
+                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors w-full text-left cursor-pointer"
                                     role="menuitem"
                                     onClick={() => handleTheme("indigo-mist")}
                                 >
                                     Indigo Mist
-                                </a>
-                                <a
-                                    href="#"
-                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors"
+                                </button>
+                                <button
+                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors w-full text-left cursor-pointer"
                                     role="menuitem"
                                     onClick={() => handleTheme("twilight-orchid")}
                                 >
                                     Twilight Orchid
-                                </a>
-                                <a
-                                    href="#"
-                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors"
+                                </button>
+                                <button
+                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors w-full text-left cursor-pointer"
                                     role="menuitem"
                                     onClick={() => handleTheme("blue-neon")}
                                 >
                                     Blue Neon
-                                </a>
+                                </button>
                             </div>
                         </div>
                     )}

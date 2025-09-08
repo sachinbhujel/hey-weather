@@ -5,7 +5,6 @@ import MainWeather from "./components/MainWeather";
 import HourlyWeather from "./components/HourlyWeather";
 import DaysWeather from "./components/DaysWeather";
 import Search from "./components/Search";
-import Footer from "./components/Footer";
 
 export default function Home() {
     const [searchInput, setSearchInput] = useState("");
@@ -64,7 +63,6 @@ export default function Home() {
                     <span className="sr-only">Loading...</span>
                 </div>
             )}
-            <Footer />
         </main>
     );
 }
