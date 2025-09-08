@@ -1,32 +1,50 @@
-# Weather App 🌤️
+# 🌦️ HeyWeather
 
-A simple and responsive weather application built with **React.js** that fetches real-time weather data using the **OpenWeatherMap API**.  
-Live Demo: [weather.appwrite.network](https://weather.appwrite.network)
+A minimal and modern weather app built with **Next.js** and **TailwindCSS**.  
+What makes **HeyWeather** unique is its **multiple theme options** and a clean UI that shows:
+
+-   ✅ Current weather
+-   ⏳ 3-hour forecast
+-   📅 Daily weather
+
+🔗 Live Demo: [heyweather.vercel.app](https://weather.appwrite.network)
 
 ---
 
 ## ✨ Features
-- 🌍 Search weather by city name.  
-- 📊 Displays temperature, humidity, wind speed, and more.  
-- 🕒 Shows current weather and forecast (hourly/daily).  
-- 📱 Fully responsive design for desktop, tablet, and mobile.  
+
+-   🎨 Multiple theme options for a personalized look
+-   📍 Real-time weather data
+-   ⏳ 3-hour interval forecast
+-   📅 Daily forecast at a glance
+-   📱 Fully responsive and mobile-friendly
+-   ⚡ Built with **Next.js 13** and styled using **TailwindCSS**
 
 ---
 
 ## 🚀 Tech Stack
-- **React.js** – Frontend framework  
-- **Tailwind CSS** – Styling and responsive design  
-- **OpenWeatherMap API** – Weather data provider  
+
+-   **Next.js** – React framework for SSR & static generation
+-   **TailwindCSS** – Utility-first CSS framework
+-   **OpenWeather API** (or whichever API you used)
 
 ---
 
-## 📦 Installation
+## 🤝 Contributing
 
-Clone the repository:
-```bash
-git clone https://github.com/sachinbhujel/hey-weather.git
+Contributions, issues, and feature requests are welcome! Feel free to open an issue or submit a PR.
 
-npm install
+---
 
-npm run dev
-```
+## 📸 Preview
+
+![hey-weather-theme1](public/hey-weather-theme1.png)
+![hey-weather-theme2](public/hey-weather-theme2.png)
+![hey-weather-theme3](public/hey-weather-theme3.png)
+![hey-weather-theme4](public/hey-weather-theme4.png)
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License – feel free to use and modify it.

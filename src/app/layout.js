@@ -18,8 +18,7 @@ export const metadata = {
     icons: {
         icon: [{ url: "/favicon.ico" }],
     },
-    description:
-        "",
+    description: "",
 };
 
 export default function RootLayout({ children }) {

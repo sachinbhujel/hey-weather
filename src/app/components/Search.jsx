@@ -9,7 +9,7 @@ function Search({ setCity, searchInput, setSearchInput }) {
     };
 
     return (
-        <div className="flex w-[70%] sm:w-[50%] justify-center m-auto mt-6">
+        <div className="flex w-[80%] sm:w-[60%] justify-center m-auto mt-6">
             <form
                 onSubmit={handleSubmit}
                 className="border-2 border-primary rounded-3xl flex justify-between w-full items-center gap-1 p-2 pl-4"

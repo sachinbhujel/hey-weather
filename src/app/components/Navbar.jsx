@@ -4,28 +4,32 @@ import React, { useState } from "react";
 
 function Navbar() {
     const [themeShow, setThemeShow] = useState(false);
+    const [close, setClose] = useState(false);
 
     const handleTheme = (themeName) => {
         document.documentElement.classList = themeName;
     };
 
     const handleArrow = () => {
+        setClose(!close);
         setThemeShow(!themeShow);
+        document.getElementsByClassName("img-container")[0].style.zIndex = close ? ("0") : ("-1");
+        document.getElementsByClassName("img-container")[1].style.zIndex = close ? ("0") : ("-1")
     }
 
     return (
         <div className="bg-secondary/60 border-primary shadow-md flex items-center justify-between border-2 px-4 py-2 w-[100%] sm:w-[90%] rounded-xl m-auto">
             <div className="flex items-center gap-1">
-                <h1 className="text-xl text-text font-semibold">Weather</h1>
+                <h1 className="text-xl text-primary font-semibold">Weather</h1>
             </div>
             <div className="flex items-center gap-2">
-                <div className="relative inline-flex">
+                <div className="relative inline-flex text-primary">
                     <span
-                        className="border-primary inline-flex divide-x divide-primary/30 overflow-hidden rounded border border-primary shadow-sm"
+                        className="border-primary border inline-flex divide-x divide-primary/30 overflow-hidden rounded shadow-sm"
                     >
                         <button
                             type="button"
-                            className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-text transition-colors"
+                            className="flex items-center gap-1 p-2 text-sm font-medium text-text transition-colors"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-palette-icon lucide-palette"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z" /><circle cx="13.5" cy="6.5" r=".5" fill="currentColor" /><circle cx="17.5" cy="10.5" r=".5" fill="currentColor" /><circle cx="6.5" cy="12.5" r=".5" fill="currentColor" /><circle cx="8.5" cy="7.5" r=".5" fill="currentColor" /></svg>
                             <p className="text-sm">Themes</p>
@@ -33,20 +37,25 @@ function Navbar() {
 
                         <button
                             type="button"
-                            className="cursor-pointer px-3 py-2 text-sm font-medium text-text transition-colors hover:bg-primary hover:text-secondary focus:relative"
+                            className="cursor-pointer p-2 text-sm font-medium text-text transition-colors hover:bg-primary hover:text-secondary focus:relative"
                             aria-label="Menu"
                             onClick={handleArrow}
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                className="size-4"
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                            </svg>
+                            {close ? (
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                            ) : (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth="1.5"
+                                    stroke="currentColor"
+                                    className="size-4"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            )}
+
                         </button>
                     </span>
 
@@ -166,7 +175,7 @@ function Navbar() {
                     )}
                 </div>
                 <a href="https://github.com/sachinbhujel/hey-weather" target="_blank">
-                    <div className="hover:text-secondary hover:bg-primary rounded-full border-[1.5px] border-primary p-2 cursor-pointer">
+                    <div className="hover:text-secondary text-primary hover:bg-primary rounded-full border-[1.5px] border-primary p-2 cursor-pointer">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="22"

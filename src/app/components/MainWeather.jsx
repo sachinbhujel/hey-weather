@@ -8,7 +8,6 @@ function MainWeather({ city }) {
     const [weatherImg, setWeatherImg] = useState(null);
     const [weatherNote, setWeatherNote] = useState("");
 
-
     const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
     useEffect(() => {
@@ -79,7 +78,7 @@ function MainWeather({ city }) {
             <div>
                 <div className="flex flex-col gap-8">
                     <div className="mt-8 sm:h-100 sm:p-4 m-auto flex sm:flex-row justify-center sm:gap-10 gap-6 items-center w-[100%] sm:w-[90%] sm:items-start">
-                        <div className="bg-background border-primary border-2 rounded sm:h-full h-35 shadow-lg shadow-accent sm:p-3 sm:pb-8 pb-8 p-1 rotate-[-2deg] w-35 sm:w-[50%] -z-1">
+                        <div className="bg-background hover:rotate-0 cursor-pointer border-primary border-2 sm:h-full h-35 shadow-lg shadow-accent sm:p-3 sm:pb-8 pb-8 p-1 rotate-[-2deg] w-35 sm:w-[50%] img-container">
                             <img
                                 src={weatherImg}
                                 alt={weatherNote}
@@ -91,9 +90,9 @@ function MainWeather({ city }) {
                             </p>
                         </div>
 
-                        <div className="flex flex-col sm:gap-8 gap-6 justify-around h-full -z-1">
+                        <div className="flex flex-col sm:gap-8 gap-6 justify-around h-full img-container ">
                             <div
-                                className="dark:bg-[#ffffd9] bg-#FFFFB8 shadow-md shadow-accent sm:p-4 p-2 sm:w-[260px] w-40 h-max sm:rotate-2 rotate-2 relative border-[1px] border-primary"
+                                className="cursor-pointer dark:bg-[#ffffd9] bg-#FFFFB8 shadow-md shadow-accent sm:p-4 p-2 sm:w-[260px] w-40 h-max sm:rotate-2 rotate-2 hover:rotate-0 relative border-[1px] border-primary"
                             >
                                 <div className="bg-primary absolute sm:top-[-11px] top-[-5px] left-1/2 -translate-x-1/2 sm:w-[80px] w-[40px] sm:h-[20px] h-[10px]"></div>
                                 <h3 className="text-accent font-medium sm:text-xl text-base mb-1 sm:mb-2">
@@ -103,7 +102,7 @@ function MainWeather({ city }) {
                             </div>
                             {weatherNote && (
                                 <div
-                                    className="dark:bg-[#ffffd9] bg-#FFFFB8 shadow-md shadow-accent sm:p-4 p-2 sm:w-[260px] w-40 h-max sm:-rotate-2 -rotate-2 relative border-[1px]"
+                                    className="cursor-pointer dark:bg-[#ffffd9] bg-#FFFFB8 shadow-md shadow-accent sm:p-4 p-2 sm:w-[260px] w-40 h-max sm:-rotate-2 -rotate-2 hover:rotate-0 relative border-[1px] border-primary"
                                 >
                                     <div className="bg-primary absolute sm:top-[-11px] top-[-5px] left-1/2 -translate-x-1/2 sm:w-[80px] w-[40px] sm:h-[20px] h-[10px]"></div>
                                     <h3 className="text-accent font-medium sm:text-xl text-base sm:mb-2 mb-1">
