@@ -14,17 +14,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-    title: "Weather",
+    title: "HeyWeather | Minimal & modern weather app",
     icons: {
         icon: [{ url: "/favicon.ico" }],
     },
-    description: "",
+    description:
+        "HeyWeather is a minimal and modern weather app, unique for its multiple theme options and clean, easy-to-read UI.",
 };
 
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <head>
+                <meta
+                    property="og:title"
+                    content="HeyWeather | Minimal & modern weather app"
+                />
+                <meta
+                    property="og:description"
+                    content="HeyWeather is a minimal and modern weather app, unique for its multiple theme options and clean, easy-to-read UI."
+                />
+                <meta property="og:image" content="/hey-weather-theme1.png" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link
                     rel="preconnect"
