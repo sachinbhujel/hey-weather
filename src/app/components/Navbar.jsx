@@ -77,7 +77,7 @@ function Navbar() {
                                     href="#"
                                     className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors"
                                     role="menuitem"
-                                    onClick={() => handleTheme("t3")}
+                                    onClick={() => handleTheme("pinkish")}
                                 >
                                     Pinkish
                                 </a>
@@ -127,7 +127,7 @@ function Navbar() {
                                     role="menuitem"
                                     onClick={() => handleTheme("choco")}
                                 >
-                                    Choco
+                                    Dark Cocoa
                                 </a>
                                 <a
                                     href="#"
@@ -136,6 +136,30 @@ function Navbar() {
                                     onClick={() => handleTheme("royal-eclipse")}
                                 >
                                     Royal Eclipse
+                                </a>
+                                <a
+                                    href="#"
+                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors"
+                                    role="menuitem"
+                                    onClick={() => handleTheme("indigo-mist")}
+                                >
+                                    Indigo Mist
+                                </a>
+                                <a
+                                    href="#"
+                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors"
+                                    role="menuitem"
+                                    onClick={() => handleTheme("twilight-orchid")}
+                                >
+                                    Twilight Orchid
+                                </a>
+                                <a
+                                    href="#"
+                                    className="hover:bg-primary hover:text-secondary block px-3 py-2 text-sm font-medium text-text transition-colors"
+                                    role="menuitem"
+                                    onClick={() => handleTheme("blue-neon")}
+                                >
+                                    Blue Neon
                                 </a>
                             </div>
                         </div>
