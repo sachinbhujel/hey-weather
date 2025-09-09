@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 
-function Search({ setCity, searchInput, setSearchInput }) {
-    const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
+function Search({ setCity }) {
+    const inputRef = useRef();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setCity(searchInput);
+if (inputRef.current.value.trim()) {
+            setCity(inputRef.current.value.trim());
+        }
     };
 
     return (
@@ -18,8 +20,7 @@ function Search({ setCity, searchInput, setSearchInput }) {
                     type="text"
                     className="text-primary placeholder-primary w-full p-1 outline-none"
                     placeholder="Search location"
-                    value={searchInput}
-                    onChange={(e) => setSearchInput(e.target.value)}
+                    ref={inputRef}
                     required
                 />
                 <button
@@ -49,3 +50,10 @@ function Search({ setCity, searchInput, setSearchInput }) {
 }
 
 export default Search;
+
+
+
+
+        
+
+    

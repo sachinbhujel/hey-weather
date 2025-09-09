@@ -7,6 +7,7 @@ function MainWeather({ city }) {
     const [weather, setWeather] = useState("");
     const [weatherImg, setWeatherImg] = useState(null);
     const [weatherNote, setWeatherNote] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
@@ -17,6 +18,8 @@ function MainWeather({ city }) {
                 const weatherRes = await fetch(
                     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${WEATHER_API_KEY}&units=metric`
                 );
+
+
                 const weatherResponse = await weatherRes.json();
                 setWeather(weatherResponse);
 
@@ -79,7 +82,15 @@ function MainWeather({ city }) {
                 <div className="flex flex-col gap-8">
                     <div className="mt-8 sm:h-100 sm:p-4 m-auto flex sm:flex-row justify-center sm:gap-10 gap-6 items-center w-[100%] sm:w-[90%] sm:items-start">
                         <div className="bg-background hover:rotate-0 cursor-pointer border-primary border-2 sm:h-full h-35 shadow-lg shadow-accent sm:p-3 sm:pb-8 pb-8 p-1 rotate-[-2deg] w-35 sm:w-[50%] img-container">
-                            <img src={`//wsrv.nl/?url=https://heyweather.vercel.app/${weatherImg}`} className="w-full sm:h-[90%] h-full object-cover border-primary" />
+                            {weatherImg ? (
+                                <img src={`//wsrv.nl/?url=https://heyweather.vercel.app/${weatherImg}`} className="w-full sm:h-[90%] h-full object-cover border-primary" />
+                            ) : (
+                                <div role="status" className="animate-pulse bg-secondary/30 flex items-center justify-center w-full sm:h-[90%] h-full object-cover border-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary lucide lucide-image-icon lucide-image"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
+                                    <span className="sr-only">Loading...</span>
+                                </div>
+
+                            )}
                             <p className="text-primary text-center sm:mt-2 mt-1 sm:text-xl text-sm font-semibold">
                                 {weather?.name},{" "}
                                 {weather.sys?.country}

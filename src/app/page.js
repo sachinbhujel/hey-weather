@@ -7,8 +7,8 @@ import DaysWeather from "./components/DaysWeather";
 import Search from "./components/Search";
 
 export default function Home() {
-    const [searchInput, setSearchInput] = useState("");
     const [city, setCity] = useState("");
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         async function fetchIP() {
@@ -28,11 +28,7 @@ export default function Home() {
 
     return (
         <main>
-            <Search
-                setCity={setCity}
-                searchInput={searchInput}
-                setSearchInput={setSearchInput}
-            />
+            <Search setCity={setCity} />
             {city ? (
                 <>
                     <MainWeather city={city} />
