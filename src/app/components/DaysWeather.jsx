@@ -20,6 +20,10 @@ function DaysWeather({ city }) {
                     setLoading(true);
                 }
 
+                if(res.ok){
+                    setLoading(false);
+                }
+
                 const data = await res.json();
 
                 let nextDays = [];
