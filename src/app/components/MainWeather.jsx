@@ -79,11 +79,7 @@ function MainWeather({ city }) {
                 <div className="flex flex-col gap-8">
                     <div className="mt-8 sm:h-100 sm:p-4 m-auto flex sm:flex-row justify-center sm:gap-10 gap-6 items-center w-[100%] sm:w-[90%] sm:items-start">
                         <div className="bg-background hover:rotate-0 cursor-pointer border-primary border-2 sm:h-full h-35 shadow-lg shadow-accent sm:p-3 sm:pb-8 pb-8 p-1 rotate-[-2deg] w-35 sm:w-[50%] img-container">
-                            <img
-                                src={weatherImg}
-                                alt={weatherNote}
-                                className="w-full sm:h-[90%] h-full object-cover border-primary"
-                            />
+                            <img src={`//wsrv.nl/?url=https://heyweather.vercel.app/${weatherImg}`} className="w-full sm:h-[90%] h-full object-cover border-primary" />
                             <p className="text-primary text-center sm:mt-2 mt-1 sm:text-xl text-sm font-semibold">
                                 {weather?.name},{" "}
                                 {weather.sys?.country}
