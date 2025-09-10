@@ -30,9 +30,11 @@ function HourlyWeather({ city }) {
             if (!city) return;
 
             try {
-                const res = await fetch(
-                    `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${WEATHER_API_KEY}&units=metric`
-                );
+                const res = await fetch("/api/hourly-weather", {
+                    method: "POST",
+                    body: JSON.stringify({ city }),
+                    headers: { "Content-type": "application/json" },
+                });
 
                 if (res.ok) {
                     setLoading(false);
