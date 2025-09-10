@@ -19,7 +19,7 @@ if (inputRef.current.value.trim()) {
                 <input
                     type="text"
                     className="text-primary placeholder-primary w-full p-1 outline-none"
-                    placeholder="Search location"
+                    placeholder="Enter location"
                     ref={inputRef}
                     required
                 />

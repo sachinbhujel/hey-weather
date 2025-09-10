@@ -3,7 +3,22 @@ import { weatherInfo } from "@/data";
 
 function HourlyWeather({ city }) {
     const [weather, setWeather] = useState("");
-    const dayTime = ["6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"];
+    const dayTime = [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+    ];
     const [nextThreeHours, setNextThreeHours] = useState([]);
     const [timeAndImage, setTimeAndImage] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -19,13 +34,10 @@ function HourlyWeather({ city }) {
                     `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${WEATHER_API_KEY}&units=metric`
                 );
 
-                if (!res.ok) {
-                    setLoading(true);
-                }
-
-                
-                if(res.ok){
+                if (res.ok) {
                     setLoading(false);
+                } else {
+                    setLoading(true);
                 }
 
                 const data = await res.json();
@@ -50,7 +62,9 @@ function HourlyWeather({ city }) {
 
                 const now = hour.dt;
                 const nowDate = new Date(now * 1000);
-                let timeString = nowDate.toLocaleTimeString("en-US", { hour12: true });
+                let timeString = nowDate.toLocaleTimeString("en-US", {
+                    hour12: true,
+                });
                 let newNowDate = parseInt(timeString.split(":")[0]);
                 let amOrPm = timeString.split(" ")[1];
 
@@ -69,15 +83,22 @@ function HourlyWeather({ city }) {
                     const max = Number(range.slice(lastDash + 1));
 
                     if (temp >= min && temp <= max) {
-                        matchedImage = isDay ? weatherInfo[range].day : weatherInfo[range].night;
+                        matchedImage = isDay
+                            ? weatherInfo[range].day
+                            : weatherInfo[range].night;
                         break;
                     }
                 }
 
                 tempArr.push({
-                    time: newNowDate > 12 ? newNowDate - 12 : newNowDate === 0 ? 12 : newNowDate,
+                    time:
+                        newNowDate > 12
+                            ? newNowDate - 12
+                            : newNowDate === 0
+                            ? 12
+                            : newNowDate,
                     image: matchedImage,
-                    amOrPm
+                    amOrPm,
                 });
             });
 
@@ -117,10 +138,16 @@ function HourlyWeather({ city }) {
                 </div>
             ) : (
                 <div className="grid grid-cols-3 md:grid-cols-6 m-auto w-full place-items-center md:gap-10 sm:gap-8 gap-6">
-                    {nextThreeHours && (
+                    {nextThreeHours &&
                         nextThreeHours.map((w, index) => (
                             <div key={index}>
-                                <div className={`shadow-md shadow-accent ${index % 2 === 0 ? "rotate-3" : "-rotate-3"} hover:rotate-0 border-primary border-2 md:h-50 md:w-32 sm:w-30 w-23 h-36 sm:h-45 gap-2 sm:p-2 p-1 cursor-pointer flex flex-col`}>
+                                <div
+                                    className={`shadow-md shadow-accent ${
+                                        index % 2 === 0
+                                            ? "rotate-3"
+                                            : "-rotate-3"
+                                    } hover:rotate-0 border-primary border-2 md:h-50 md:w-32 sm:w-30 w-23 h-36 sm:h-45 gap-2 sm:p-2 p-1 cursor-pointer flex flex-col`}
+                                >
                                     <img
                                         src={timeAndImage[index]?.image?.image}
                                         alt="x"
@@ -129,13 +156,13 @@ function HourlyWeather({ city }) {
 
                                     <div className="text-primary flex flex-col justify-center items-center">
                                         <p className="text-xs sm:text-sm">{`${timeAndImage[index]?.time} ${timeAndImage[index]?.amOrPm}`}</p>
-                                        <p className="font-bold text-sm sm:text-base">{w.main.temp}°C</p>
+                                        <p className="font-bold text-sm sm:text-base">
+                                            {w.main.temp}°C
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                        ))
-                    )
-                    }
+                        ))}
                 </div>
             )}
         </div>
