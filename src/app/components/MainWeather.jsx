@@ -132,7 +132,14 @@ function MainWeather({ city }) {
                                         </div>
                                     )}
                                     <p className="text-primary text-center sm:mt-2 mt-1 sm:text-xl text-sm font-semibold">
-                                        {weather?.name}, {weather.sys?.country}
+                                        {weather.name ? (
+                                            <>
+                                                {weather?.name},{" "}
+                                                {weather.sys?.country}
+                                            </>
+                                        ) : (
+                                            "loading..."
+                                        )}
                                     </p>
                                 </div>
 
@@ -143,7 +150,11 @@ function MainWeather({ city }) {
                                             Temperature
                                         </h3>
                                         <p className="text-accent text-xl font-semibold sm:text-3xl">
-                                            {weather.main?.temp}°C
+                                            {weather.main ? (
+                                                <>{weather.main?.temp}°C</>
+                                            ) : (
+                                                "loading..."
+                                            )}
                                         </p>
                                     </div>
                                     {weatherNote && (
@@ -170,7 +181,11 @@ function MainWeather({ city }) {
                                             {cate.name}
                                         </h1>
                                         <p className="text-primary sm:text-2xl text-xl text-center font-bold">
-                                            {cate.value}
+                                            {cate.value ? (
+                                                <>{cate.value}</>
+                                            ) : (
+                                                "loading..."
+                                            )}
                                         </p>
                                     </div>
                                 ))}
