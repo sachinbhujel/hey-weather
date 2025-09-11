@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { weatherInfo } from "@/data";
+import { rainInfo } from "@/data";
 
 function MainWeather({ city }) {
     const [weather, setWeather] = useState("");
@@ -19,6 +20,7 @@ function MainWeather({ city }) {
                 });
 
                 const data = await res.json();
+                console.log(data);
                 if (res.ok) {
                     setWeather(data);
                     setLoading(false);
@@ -38,12 +40,32 @@ function MainWeather({ city }) {
         if (!weather) return;
 
         const temp = weather.main?.temp;
+        const rain = weather.rain?.["1h"];
+        console.log(rain);
 
         const now = weather.dt;
         const sunrise = weather.sys?.sunrise;
         const sunset = weather.sys?.sunset;
 
         const isDay = now >= sunrise && now < sunset;
+
+        if (rain) {
+            for (let range in rainInfo) {
+                const lastDash = range.lastIndexOf("-");
+                const min = Number(range.slice(0, lastDash));
+                const max = Number(range.slice(lastDash + 1));
+
+                if (rain >= min && rain <= max) {
+                    const rainWeatherInfo = isDay
+                        ? rainInfo[range].day
+                        : rainInfo[range].night;
+
+                    setWeatherNote(rainWeatherInfo.note);
+                    setWeatherImg(rainWeatherInfo.image);
+                    return;
+                }
+            }
+        }
 
         for (let range in weatherInfo) {
             const lastDash = range.lastIndexOf("-");
@@ -80,6 +102,8 @@ function MainWeather({ city }) {
             value: `${weather.clouds?.all}`,
         },
     ];
+
+    console.log(weatherImg);
 
     return (
         <>

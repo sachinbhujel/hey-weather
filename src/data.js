@@ -144,3 +144,54 @@ export const weatherInfo = {
         },
     },
 };
+
+export const rainInfo = {
+    "0-1": {
+        day: {
+            image: "light-rain.png",
+            alt: "Light rain (Day)",
+            note: "Drizzle ☔. A light umbrella is enough.",
+        },
+        night: {
+            image: "light-rain-night.jpg",
+            alt: "Light rain (Night)",
+            note: "Light showers 🌧️. Roads may be a little slippery.",
+        },
+    },
+    "1-5": {
+        day: {
+            image: "moderate-rain.png",
+            alt: "Moderate rain (Day)",
+            note: "Moderate rain ☔. Take a proper umbrella or raincoat.",
+        },
+        night: {
+            image: "moderate-rain-night.jpg",
+            alt: "Moderate rain (Night)",
+            note: "Steady rainfall 🌧️. Drive carefully.",
+        },
+    },
+    "5-20": {
+        day: {
+            image: "heavy-rain.png",
+            alt: "Heavy rain (Day)",
+            note: "Heavy rain 🌧️. Stay safe, possible waterlogging.",
+        },
+        night: {
+            image: "heavy-rain-night.jpg",
+            alt: "Heavy rain (Night)",
+            note: "Strong rainfall 🌧️. Avoid unnecessary travel.",
+        },
+    },
+    "20-100": {
+        day: {
+            image: "extreme-rain.png",
+            alt: "Extreme rain (Day)",
+            note: "Extreme rain ⛈️. Flooding possible, stay indoors!",
+        },
+        night: {
+            image: "extreme-rain-night.jpg",
+            alt: "Extreme rain (Night)",
+            note: "Dangerous rainfall ⛈️. Avoid going outside.",
+        },
+    },
+};
