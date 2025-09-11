@@ -46,7 +46,6 @@ export default function RootLayout({ children }) {
                     rel="stylesheet"
                     href="https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap"
                 />
-              
             </head>
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}

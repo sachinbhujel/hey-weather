@@ -7,7 +7,6 @@ export async function POST(request) {
     );
 
     const weatherResponse = await weatherRes.json();
-    console.log(weatherResponse);
 
     if (!weatherRes.ok) {
         return new Response(

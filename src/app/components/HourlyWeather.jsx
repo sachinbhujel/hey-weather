@@ -42,7 +42,6 @@ function HourlyWeather({ city }) {
                 }
 
                 const data = await res.json();
-                console.log(data);
                 setWeather(data);
 
                 const sliced = data.list.slice(0, 6);
@@ -62,7 +61,6 @@ function HourlyWeather({ city }) {
             nextThreeHours.map((hour) => {
                 const temp = Math.round(hour.main.temp);
                 const rain = hour.rain?.["3h"];
-                console.log("rain", rain);
 
                 const now = hour.dt;
                 const nowDate = new Date(now * 1000);
@@ -124,8 +122,6 @@ function HourlyWeather({ city }) {
             setTimeAndImage(tempArr);
         }
     }, [weather]);
-
-    console.log(timeAndImage);
 
     return (
         <div className="w-[90%] m-auto mt-6 pb-4">

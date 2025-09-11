@@ -7,11 +7,11 @@ export async function POST(request) {
     );
 
     const weatherResponse = await weatherRes.json();
-    console.log(weatherResponse);
-
-     if (!weatherRes.ok) {
+    if (!weatherRes.ok) {
         return new Response(
-            JSON.stringify({ error: weatherResponse.message || "City not found" }),
+            JSON.stringify({
+                error: weatherResponse.message || "City not found",
+            }),
             { status: weatherRes.status }
         );
     }
