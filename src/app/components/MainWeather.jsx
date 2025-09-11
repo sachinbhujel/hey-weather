@@ -20,7 +20,6 @@ function MainWeather({ city }) {
                 });
 
                 const data = await res.json();
-                console.log(data);
                 if (res.ok) {
                     setWeather(data);
                     setLoading(false);
@@ -41,7 +40,6 @@ function MainWeather({ city }) {
 
         const temp = weather.main?.temp;
         const rain = weather.rain?.["1h"];
-        console.log(rain);
 
         const now = weather.dt;
         const sunrise = weather.sys?.sunrise;
@@ -102,8 +100,6 @@ function MainWeather({ city }) {
             value: `${weather.clouds?.all}`,
         },
     ];
-
-    console.log(weatherImg);
 
     return (
         <>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { weatherInfo } from "@/data";
+import { rainInfo } from "@/data";
 
 function HourlyWeather({ city }) {
     const [weather, setWeather] = useState("");
@@ -23,8 +24,6 @@ function HourlyWeather({ city }) {
     const [timeAndImage, setTimeAndImage] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
-
     useEffect(() => {
         async function fetchHourlyData() {
             if (!city) return;
@@ -43,6 +42,7 @@ function HourlyWeather({ city }) {
                 }
 
                 const data = await res.json();
+                console.log(data);
                 setWeather(data);
 
                 const sliced = data.list.slice(0, 6);
@@ -61,6 +61,8 @@ function HourlyWeather({ city }) {
 
             nextThreeHours.map((hour) => {
                 const temp = Math.round(hour.main.temp);
+                const rain = hour.rain?.["3h"];
+                console.log("rain", rain);
 
                 const now = hour.dt;
                 const nowDate = new Date(now * 1000);
@@ -78,6 +80,32 @@ function HourlyWeather({ city }) {
 
                 const isDay = dayTime.includes(String(newNowDate));
                 let matchedImage = null;
+
+                if (rain) {
+                    for (let range in rainInfo) {
+                        const lastDash = range.lastIndexOf("-");
+                        const min = Number(range.slice(0, lastDash));
+                        const max = Number(range.slice(lastDash + 1));
+
+                        if (rain >= min && rain <= max) {
+                            matchedImage = isDay
+                                ? rainInfo[range].day
+                                : rainInfo[range].night;
+                            break;
+                        }
+                    }
+
+                    tempArr.push({
+                        time:
+                            newNowDate > 12
+                                ? newNowDate - 12
+                                : newNowDate === 0
+                                ? 12
+                                : newNowDate,
+                        image: matchedImage,
+                        amOrPm,
+                    });
+                }
 
                 for (let range in weatherInfo) {
                     const lastDash = range.lastIndexOf("-");
@@ -107,6 +135,8 @@ function HourlyWeather({ city }) {
             setTimeAndImage(tempArr);
         }
     }, [weather]);
+
+    console.log(timeAndImage);
 
     return (
         <div className="w-[90%] m-auto mt-6 pb-4">

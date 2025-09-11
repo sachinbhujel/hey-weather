@@ -5,7 +5,6 @@ import React, { useState, useEffect } from "react";
 function DaysWeather({ city }) {
     const [nextDayWeather, setNextDayWeather] = useState([]);
     const [loading, setLoading] = useState(false);
-    const WEATHER_API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
     useEffect(() => {
         if (!city) return;
