@@ -94,29 +94,18 @@ function HourlyWeather({ city }) {
                             break;
                         }
                     }
+                } else {
+                    for (let range in weatherInfo) {
+                        const lastDash = range.lastIndexOf("-");
+                        const min = Number(range.slice(0, lastDash));
+                        const max = Number(range.slice(lastDash + 1));
 
-                    tempArr.push({
-                        time:
-                            newNowDate > 12
-                                ? newNowDate - 12
-                                : newNowDate === 0
-                                ? 12
-                                : newNowDate,
-                        image: matchedImage,
-                        amOrPm,
-                    });
-                }
-
-                for (let range in weatherInfo) {
-                    const lastDash = range.lastIndexOf("-");
-                    const min = Number(range.slice(0, lastDash));
-                    const max = Number(range.slice(lastDash + 1));
-
-                    if (temp >= min && temp <= max) {
-                        matchedImage = isDay
-                            ? weatherInfo[range].day
-                            : weatherInfo[range].night;
-                        break;
+                        if (temp >= min && temp <= max) {
+                            matchedImage = isDay
+                                ? weatherInfo[range].day
+                                : weatherInfo[range].night;
+                            break;
+                        }
                     }
                 }
 
@@ -141,7 +130,7 @@ function HourlyWeather({ city }) {
     return (
         <div className="w-[90%] m-auto mt-6 pb-4">
             <h1 className="text-primary sm:text-3xl text-2xl font-bold">
-                Hourly Forecast
+                Hourly Forecast <span className="text-lg">(3h)</span>
             </h1>
             <hr className="border-primary mt-2 mb-5" />
 
