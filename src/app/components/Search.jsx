@@ -76,7 +76,7 @@ function Search({ setCity }) {
                         <li
                             key={index}
                             onClick={() => handleSelect(city)}
-                            className="p-2 cursor-pointer text-primary"
+                            className="hover:bg-secondary/60 p-2 cursor-pointer text-primary"
                         >
                             {city}
                         </li>
