@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import { cities } from "@/data";
+import React, {useRef, useState, useMemo} from "react";
+import debounce from 'lodash/debounce';
+//import { cities } from "@/data";
+import {newCities} from "@/cities"
 
-function Search({ setCity }) {
+function Search({setCity}) {
     const inputRef = useRef();
     const [suggestions, setSuggestions] = useState([]);
 
@@ -21,18 +23,25 @@ function Search({ setCity }) {
         setSuggestions([]);
     };
 
-    const handleChange = () => {
-        const value = inputRef.current.value.trim().toLowerCase();
-        if (value) {
-            const filtered = cities.filter((city) =>
-                city.toLowerCase().startsWith(value)
-            );
-            const slicedFiltered = filtered.slice(0, 12);
-            setSuggestions(slicedFiltered);
-        } else {
-            setSuggestions([]);
-        }
-    };
+    // Debounce delays search until typing stops to avoid lag
+    const handleChange = useMemo(
+        () =>
+            debounce(() => {
+                const value = inputRef.current.value.trim().toLowerCase();
+                if (value) {
+                    const filtered = [];
+                    for (const city of newCities) {
+                        if (city.name.toLowerCase().includes(value)) {
+                            filtered.push(city.name);
+                        }
+                    }
+                    setSuggestions(filtered.slice(0, 500));
+                } else {
+                    setSuggestions([]);
+                }
+            }, 300),
+        [newCities]
+    );
 
     return (
         <div className="flex w-[80%] sm:w-[60%] justify-center m-auto mt-6 relative">
@@ -64,8 +73,8 @@ function Search({ setCity }) {
                         strokeLinejoin="round"
                         className="lucide lucide-search"
                     >
-                        <path d="m21 21-4.34-4.34" />
-                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.34-4.34"/>
+                        <circle cx="11" cy="11" r="8"/>
                     </svg>
                 </button>
             </form>
