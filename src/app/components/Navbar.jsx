@@ -65,7 +65,7 @@ function Navbar() {
                     {themeShow && (
                         <div
                             role="menu"
-                            className="bg-background absolute end-0 top-12 w-56 h-45 custom-scrollbar overflow-auto rounded border border-primary shadow-sm"
+                            className="bg-background absolute end-0 top-12 w-56 h-45 custom-scrollbar overflow-auto rounded border border-primary shadow-sm z-10"
                         >
                             <div>
                                 <button

@@ -59,7 +59,7 @@ function HourlyWeather({ city }) {
             let tempArr = [];
 
             nextThreeHours.map((hour) => {
-                const temp = Math.round(hour.main.temp);
+                const temp = hour.main.temp;
                 const rain = hour.rain?.["3h"];
 
                 const now = hour.dt;
@@ -173,8 +173,21 @@ function HourlyWeather({ city }) {
 
                                     <div className="text-primary flex flex-col justify-center items-center">
                                         <p className="text-xs sm:text-sm">{`${timeAndImage[index]?.time} ${timeAndImage[index]?.amOrPm}`}</p>
-                                        <p className="font-bold text-sm sm:text-base">
-                                            {w.main.temp}°C
+                                        <p className="font-bold text-sm sm:text-base flex items-baseline">
+                                            {
+                                                w.main.temp
+                                                    .toString()
+                                                    .split(".")[0]
+                                            }
+                                            .
+                                            <span className="font-bold text-xs">
+                                                {
+                                                    w.main.temp
+                                                        .toString()
+                                                        .split(".")[1]
+                                                }
+                                            </span>
+                                            °C
                                         </p>
                                     </div>
                                 </div>

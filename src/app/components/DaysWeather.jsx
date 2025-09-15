@@ -99,10 +99,46 @@ function DaysWeather({ city }) {
                                         <p className="text-lg sm:w-[33%] capitalize">
                                             {next.weather[0].description}
                                         </p>
-                                        <p className="sm:w-[33%] text-left font-semibold italic text-xl mb-2">
-                                            {next.main.temp_max}°/
-                                            {next.main.temp_min}°C
-                                        </p>
+                                        <div className="sm:w-[33%] text-left font-semibold italic text-xl mb-2 flex">
+                                            <p className="flex items-baseline">
+                                                <span>
+                                                    {
+                                                        next.main.temp_max
+                                                            .toString()
+                                                            .split(".")[0]
+                                                    }
+                                                </span>
+                                                .
+                                                <span className="text-base">
+                                                    {
+                                                        next.main.temp_max
+                                                            .toString()
+                                                            .split(".")[1]
+                                                    }
+                                                    °
+                                                </span>
+                                            </p>
+                                            /
+                                            <p className="flex items-baseline">
+                                                <span>
+                                                    {
+                                                        next.main.temp_min
+                                                            .toString()
+                                                            .split(".")[0]
+                                                    }
+                                                </span>
+                                                .
+                                                <span className="text-base">
+                                                    {
+                                                        next.main.temp_min
+                                                            .toString()
+                                                            .split(".")[1]
+                                                    }
+                                                    °
+                                                </span>
+                                                C
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             );

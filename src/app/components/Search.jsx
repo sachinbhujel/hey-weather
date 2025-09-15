@@ -1,17 +1,41 @@
-import React, { useRef } from "react";
+"use client";
+
+import React, { useRef, useState } from "react";
+import { cities } from "@/data";
 
 function Search({ setCity }) {
     const inputRef = useRef();
+    const [suggestions, setSuggestions] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-if (inputRef.current.value.trim()) {
+        if (inputRef.current.value.trim()) {
             setCity(inputRef.current.value.trim());
+            setSuggestions([]);
+        }
+    };
+
+    const handleSelect = (city) => {
+        setCity(city);
+        inputRef.current.value = city;
+        setSuggestions([]);
+    };
+
+    const handleChange = () => {
+        const value = inputRef.current.value.trim().toLowerCase();
+        if (value) {
+            const filtered = cities.filter((city) =>
+                city.toLowerCase().startsWith(value)
+            );
+            const slicedFiltered = filtered.slice(0, 12);
+            setSuggestions(slicedFiltered);
+        } else {
+            setSuggestions([]);
         }
     };
 
     return (
-        <div className="flex w-[80%] sm:w-[60%] justify-center m-auto mt-6">
+        <div className="flex w-[80%] sm:w-[60%] justify-center m-auto mt-6 relative">
             <form
                 onSubmit={handleSubmit}
                 className="border-2 border-primary rounded-3xl flex justify-between w-full items-center gap-1 p-2 pl-4"
@@ -21,6 +45,7 @@ if (inputRef.current.value.trim()) {
                     className="text-primary placeholder-primary w-full p-1 outline-none"
                     placeholder="Enter location"
                     ref={inputRef}
+                    onChange={handleChange}
                     required
                 />
                 <button
@@ -43,17 +68,23 @@ if (inputRef.current.value.trim()) {
                         <circle cx="11" cy="11" r="8" />
                     </svg>
                 </button>
-
             </form>
+
+            {suggestions.length > 0 && (
+                <ul className="custom-scrollbar absolute top-full left-0 mt-2 w-[100%] bg-background h-50 overflow-auto border border-primary rounded-lg z-10">
+                    {suggestions.map((city, index) => (
+                        <li
+                            key={index}
+                            onClick={() => handleSelect(city)}
+                            className="p-2 cursor-pointer text-primary"
+                        >
+                            {city}
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 }
 
 export default Search;
-
-
-
-
-        
-
-    

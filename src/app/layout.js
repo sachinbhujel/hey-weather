@@ -42,15 +42,16 @@ export default function RootLayout({ children }) {
                     href="https://fonts.gstatic.com"
                     crossOrigin="true"
                 />
+            
                 <link
                     rel="stylesheet"
                     href="https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap"
                 />
-                <script
+                {/* <script
                     defer
                     src="https://cloud.umami.is/script.js"
                     data-website-id="033bc3ea-7c5a-49c0-8b59-cbd93b0ab37f"
-                ></script>
+                ></script> */}
             </head>
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}

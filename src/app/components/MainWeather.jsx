@@ -171,7 +171,24 @@ function MainWeather({ city }) {
                                         </h3>
                                         <p className="text-accent text-xl font-semibold sm:text-3xl">
                                             {weather.main ? (
-                                                <>{weather.main?.temp}°C</>
+                                                <>
+                                                    <span>
+                                                        {
+                                                            weather.main?.temp
+                                                                .toString()
+                                                                .split(".")[0]
+                                                        }
+                                                    </span>
+                                                    .
+                                                    <span className="sm:text-2xl text-lg">
+                                                        {
+                                                            weather.main?.temp
+                                                                .toString()
+                                                                .split(".")[1]
+                                                        }
+                                                    </span>
+                                                    °C
+                                                </>
                                             ) : (
                                                 "loading..."
                                             )}
