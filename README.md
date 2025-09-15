@@ -14,7 +14,8 @@ Live Demo: [heyweather.vercel.app](https://weather.appwrite.network)
 ## Features
 
 - Multiple theme options for a personalized look  
-- Real-time weather data  
+- Real-time weather data
+- Smart search with city name suggestions for faster results
 - 3-hour interval forecast  
 - Daily forecast at a glance  
 - Fully responsive and mobile-friendly  
