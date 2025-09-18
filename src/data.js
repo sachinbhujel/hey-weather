@@ -654,6 +654,48 @@ export const cities = [
     "Aš", "Hazlov", "Františkovy Lázně", "Chodov", "Karlovy Vary", "Ostrov", "Jáchymov", "Horní Blatná", "Abertamy", "Boží Dar",
     
     // D
+    "Copenhagen", "Aarhus", "Odense", "Aalborg", "Esbjerg", "Randers", "Kolding", "Horsens", "Vejle", "Roskilde",
+    "Herning", "Helsingør", "Silkeborg", "Næstved", "Fredericia", "Viborg", "Køge", "Holstebro", "Taastrup", "Slagelse",
+    "Hillerød", "Sønderborg", "Svendborg", "Hjørring", "Frederikshavn", "Haderslev", "Nørresundby", "Ringsted", "Ølgod", "Korsør",
+    "Skive", "Nyborg", "Vordingborg", "Kalundborg", "Thisted", "Faaborg", "Bramming", "Ikast", "Bogense", "Rudkøbing",
+    "Nykøbing F", "Middelfart", "Nakskov", "Tønder", "Grenaa", "Rønne", "Kerteminde", "Lemvig", "Struer", "Løgstør",
+    "Hobro", "Hirtshals", "Blokhus", "Løkken", "Skagen", "Nibe", "Støvring", "Brovst", "Pandrup", "Aabybro",
+    "Fjerritslev", "Brønderslev", "Dronninglund", "Sindal", "Sæby", "Vraa", "Bindslev", "Tornby", "Lønstrup", "Rubjerg",
+    "Tversted", "Kandestederne", "Thorupstrand", "Agger", "Thyborøn", "Harboøre", "Ringkøbing", "Hvide Sande", "Søndervig", "Bjerregård",
+    "Vejers", "Blåvand", "Fanø", "Ribe", "Skærbæk", "Højer", "Rømø", "Løgumkloster", "Aabenraa", "Gråsten",
+    "Augustenborg", "Nordborg", "Guderup", "Broager", "Kruså", "Padborg", "Bov", "Kollund", "Frøslev", "Holbøl",
+    "Djibouti City", "Ali Sabieh", "Dikhil", "Tadjourah", "Obock", "Arta", "Holhol", "Yoboki", "Gobaad", "As Eyla",
+    "Randa", "Day Forest", "Galafi", "Loyada", "Doraleh", "Nagad", "Khor Angar", "Sagallou", "Balho", "Airolaf",
+    "Chebelley", "Guelile", "Holl-Holl", "Moulhoule", "Goubetto", "Assamo", "Ali Adde", "Gombourta", "Weah", "Dorra",
+    "Ambabo", "Damerjog", "Somali", "Afar", "Issa", "Abhe", "Lake Assal", "Lac Abbe", "Grand Bara", "Petit Bara",
+    "Moucha Island", "Maskali Island", "Sept Frères", "Bab el Mandeb", "Gulf of Tadjourah", "Ghoubbet el Kharab", "Ras Bir", "Ras Siyyan",
+    "Ras Doumeira", "Perim Island", "Hanish Islands", "Zuqar Island", "Kamaran Island", "Socotra Island", "Abd al Kuri", "Samhah", "Darsa", "Qalansiyah",
+    "Homhil", "Arher", "Qadub", "Di Hamri", "Steroh", "Momi", "Delisha", "Nogad", "Hobok", "Khor Ambado",
+    "Khor Angar Bay", "Tadjourah Bay", "Ghoubbet Bay", "Arta Bay", "Djibouti Bay", "Ras Ali", "Ras Korma", "Ras Bir Ali", "Ras Siyan", "Ras Doumeira Point",
+    "Cape Guardafui", "Ras Asir", "Ras Hafun", "Ras Binnah", "Ras Sharbithat", "Ras Maydh", "Ras Mabber", "Ras Caseyr", "Ras Khantur", "Ras Filuk",
+    "Berbera", "Zeila", "Lughaya", "Dilla", "Borama", "Amud", "Sheikh", "Oodweyne", "Ainabo", "Caynabo",
+    "Roseau", "Portsmouth", "Marigot", "Atkinson", "Mahaut", "Canefield", "Saint Joseph", "Layou", "Massacre", "Salisbury",
+    "Soufrière", "Scotts Head", "Pointe Michel", "Grand Bay", "Berekua", "Delices", "Petite Savanne", "Boetica", "Castle Bruce", "Good Hope",
+    "Hatton Garden", "Wesley", "Woodford Hill", "Calibishie", "Melville Hall", "Penville", "Hampstead", "Lagoon", "Tanetane", "Toucari",
+    "Capuchin", "Clifton", "Prince Rupert Bay", "Indian River", "Glanvillia", "Cottage", "Savanne Paille", "Colihaut", "Dublanc", "Bioche",
+    "Coulibistrie", "Bataka", "Morne Raquette", "Fond Cani", "Jimmit", "Goodwill", "Boeri Lake", "Freshwater Lake", "Trafalgar Falls", "Middleham Falls",
+    "Victoria Falls", "Emerald Pool", "Titou Gorge", "Champagne Reef", "Galion", "Grand Fond", "Belle Fille", "Londonderry", "Bellevue Chopin", "Sineku",
+    "Carib Territory", "Salybia", "Giraudel", "Eggleston", "Wotten Waven", "Trafalgar", "Laudat", "Pont Cassé", "Bells", "Morne Prosper",
+    "Morne Daniel", "Fond Cole", "Riverside", "Bath Estate", "Newtown", "Pottersville", "Checkhall", "Elmshall", "Paix Bouche", "Penville",
+    "Castle Comfort", "Pringle", "Stockfarm", "Canefield Airport", "Douglas Charles Airport", "Roseau Cathedral", "Fort Young", "Old Market", "New Market", "Windsor Park",
+    "Botanical Gardens", "Morne Bruce", "Jack's Walk", "Bath Road", "King George V Street", "Great Marlborough Street", "Cork Street", "Old Street", "Independence Street", "Kennedy Avenue",
+    "Santo Domingo", "Santiago de los Caballeros", "Los Alcarrizos", "La Romana", "San Pedro de Macorís", "San Francisco de Macorís", "Puerto Plata", "San Cristóbal", "Concepción de La Vega", "Higüey",
+    "Baní", "Bonao", "Cotuí", "Moca", "Azua de Compostela", "Bajos de Haina", "Mao", "Monte Cristi", "Esperanza", "Jarabacoa",
+    "Villa Altagracia", "Nagua", "Dajabón", "Constanza", "San José de Ocoa", "Villa Bisonó", "Salcedo", "Tamboril", "Samaná", "Barahona",
+    "San Juan de la Maguana", "Hato del Yaque", "Valverde", "Villa Tapia", "Las Matas de Farfán", "Sabana Grande de Boyá", "Sabana de la Mar", "Luperón", "Río San Juan", "Cabrera",
+    "Villa Vásquez", "Villa González", "Gaspar Hernández", "Villa Trina", "Monción", "Guayubín", "Laguna Salada", "Villa Riva", "Villa Rivas", "Fantino",
+    "Tenares", "Cayetano Germosén", "Castillo", "Eugenio María de Hostos", "Sabana Iglesia", "Jánico", "San José de las Matas", "Imbert", "Altamira", "Loma de Cabrera",
+    "Restauración", "Santiago Rodríguez", "Villa Los Almácigos", "Sabaneta", "Pepillo Salcedo", "Castañuelas", "Las Matas de Santa Cruz", "Cevicos", "Pimentel", "Las Terrenas",
+    "Sánchez", "Las Galeras", "Santa Bárbara de Samaná", "El Limón", "Villa Montellano", "Miches", "El Seibo", "Hato Mayor del Rey", "Yerba Buena", "El Valle",
+    "Ramón Santana", "Guaymate", "La Otra Banda", "Consuelo", "Quisqueya", "Porvenir", "Angelina", "Gautier", "Villa Hermosa", "Pedro Sánchez",
+    "Villa Tapía", "Jima Abajo", "Cevicos", "Fantino", "La Mata", "Villa Rivas", "Eugenio María de Hostos", "Jima", "Cotuí", "Maimón",
+    
+    // E
     "Quito", "Guayaquil", "Cuenca", "Santo Domingo", "Machala", "Durán", "Manta", "Portoviejo", "Ambato", "Riobamba",
     "Loja", "Esmeraldas", "Ibarra", "Milagro", "Quevedo", "La Libertad", "Babahoyo", "Tulcán", "Pasaje", "Salinas",
     "Daule", "El Carmen", "Otavalo", "Chone", "Sangolquí", "Latacunga", "Guaranda", "Azogues", "Macas", "Nueva Loja",
@@ -735,6 +777,7 @@ export const cities = [
     "Shashogo", "Humbo", "Yirgachefe", "Wenago", "Bule Hora", "Hagere Selam", "Negele", "Arero", "Teltele", "Miyo",
     "Dubluk", "Filtu", "Gode", "Kelafo", "Mustahil", "Ferfer", "Warder", "Kebri Dehar", "Degeh Bur", "Aware",
 
-    // E
+    // F
   ]
+
 
