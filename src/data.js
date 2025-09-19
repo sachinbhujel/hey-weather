@@ -919,8 +919,41 @@ export const cities = [
     "Corriverton", "Rose Hall", "Albion", "Port Mourant", "Bloomfield", "Cumberland", "Angoy's Avenue", "Stanleytown", "Bush Lot", "Blairmont",
     "Belladrum", "Bath", "Fort Wellington", "Mahaicony", "Cotton Tree", "Mahaica", "Craig", "Le Ressouvenir", "Nabaclis", "Beterverwagting",
     "Nonpariel", "Clonbrook", "Enterprise", "Haslington", "Melanie Damishana", "Bachelor's Adventure", "Mon Repos", "Annandale", "Friendship", "Buxton",
-    "Vigilance", "Bladen Hall", "Strathspey", "Paradise", "Golden Grove", "Nabaclis", "Haslington", "Melanie", "Enterprise", "Ogle",    
+    "Vigilance", "Bladen Hall", "Strathspey", "Paradise", "Golden Grove", "Nabaclis", "Haslington", "Melanie", "Enterprise", "Ogle",
+
+    // H
+    "Port-au-Prince", "Cap-Haïtien", "Carrefour", "Delmas", "Pétion-Ville", "Gonaïves", "Saint-Marc", "Les Cayes", "Fort-de-France", "Jacmel",
+    "Jérémie", "Hinche", "Port-de-Paix", "Croix-des-Bouquets", "Léogâne", "Petit-Goâve", "Miragoâne", "Aquin", "Cayes-Jacmel", "Anse-à-Galets",
+    "Arcahaie", "Cabaret", "Cornillon", "Fonds-Verrettes", "Ganthier", "Kenscoff", "La Croix", "Thomazeau", "Tabarre", "Cité Soleil",
+    "Bel Air", "Fort National", "Lalue", "Turgeau", "Bourdon", "Musseau", "Pacot", "Christ-Roi", "Canapé-Vert", "Juvenat",
+    "Puits Blain", "Bas Peu de Chose", "Belleville", "Christ-Roi", "Delmas 2", "Delmas 3", "Delmas 19", "Delmas 31", "Delmas 32", "Delmas 33",
+    "Delmas 40", "Delmas 41", "Delmas 60", "Delmas 75", "Delmas 83", "Pétion-Ville", "Fermathe", "Laboule", "Montagne Noire", "Thomassin",
+    "Kenskoff", "Furcy", "Source Matelas", "Jalousie", "Morne l'Hôpital", "Carrefour-Feuilles", "Martissant", "Fontamara", "Bizoton", "Thor",
+    "Mariani", "Waney", "Lamentin", "Cazeau", "Bon Repos", "Christ-Roi", "Bel Air", "Saline", "La Saline", "Cité l'Eternel",
+    "Bel Air", "Village de Dieu", "Fort Mercredi", "Martissant", "Carrefour", "Bizoton", "Mariani", "Lamentin", "Cazeau", "Bon Repos",
+    "Gressier", "Grand-Goâve", "Léogâne", "Petit-Goâve", "Jacmel", "Marigot", "Cayes-Jacmel", "La Vallée", "Bainet", "Côtes-de-Fer",
+    "Tegucigalpa", "San Pedro Sula", "Choloma", "La Ceiba", "El Progreso", "Choluteca", "Comayagua", "Puerto Cortés", "La Lima", "Danlí",
+    "Siguatepeque", "Juticalpa", "Catacamas", "Tocoa", "Tela", "Olanchito", "El Paraíso", "Yoro", "Santa Rosa de Copán", "Copán Ruinas",
+    "Valle de Ángeles", "Santa Lucía", "Sabanagrande", "San Antonio de Oriente", "Talanga", "Nueva Arcadia", "Villa San Francisco", "San Buenaventura", "Reitoca", "Maraita",
+    "Ojojona", "Cantarranas", "San Juan de Flores", "Santa Ana", "Cedros", "Curaren", "Lepaterique", "San Ignacio", "Tatumbla", "Valle de Ángeles",
+    "Amarateca", "El Porvenir", "Guaimaca", "La Venta", "Sabana Grande", "San Antonio de Oriente", "San Buenaventura", "San Juan de Flores", "San Miguelito", "Santa Ana",
+    "Villa San Francisco", "Yuscarán", "Alauca", "Danlí", "El Paraíso", "Güinope", "Jacaleapa", "Liure", "Morocelí", "Oropolí",
+    "Potrerillos", "San Antonio de Flores", "San Lucas", "San Matías", "Soledad", "Teupasenti", "Texiguat", "Trojes", "Vado Ancho", "Yauyupe",
+    "Azacualpa", "Cane", "Goascorán", "Langue", "Marcovia", "Namasigüe", "Orocuina", "Pespire", "San Lorenzo", "San Marcos de Colón",
+    "Apacilagua", "Concepción de María", "Dulce Nombre", "El Rosario", "Esquías", "La Unión", "Opatoro", "San José", "Santa María", "Yamaranguila",
+    "Aguantequerique", "Belén", "Cabañas", "Colomoncagua", "Erandique", "Gualcince", "Guarita", "La Iguala", "Las Flores", "Lepaera",
+    "Budapest", "Debrecen", "Szeged", "Miskolc", "Pécs", "Győr", "Nyíregyháza", "Kecskemét", "Székesfehérvár", "Szombathely",
+    "Szolnok", "Tatabánya", "Kaposvár", "Érd", "Veszprém", "Békéscsaba", "Zalaegerszeg", "Sopron", "Eger", "Nagykanizsa",
+    "Dunaújváros", "Cegléd", "Hódmezővásárhely", "Baja", "Salgótarján", "Szekszárd", "Pápa", "Gyula", "Kazincbarcika", "Orosháza",
+    "Szigetszentmiklós", "Budaörs", "Mosonmagyaróvár", "Hatvan", "Jászberény", "Kiskunfélegyháza", "Mátészalka", "Törökszentmiklós", "Dombóvár", "Szentendre",
+    "Gödöllő", "Vác", "Ózd", "Ajka", "Kiskunhalas", "Mohács", "Oroszlány", "Kisvárda", "Mezőtúr", "Balassagyarmat",
+    "Sárvár", "Gyöngyös", "Esztergom", "Tiszaújváros", "Komló", "Siófok", "Vecsés", "Dunakeszi", "Gyömrő", "Monor",
+    "Üllő", "Fót", "Pomáz", "Budakeszi", "Telki", "Pilisvörösvár", "Solymár", "Zsámbék", "Tököl", "Halásztelek",
+    "Érd", "Diósd", "Tárnok", "Százhalombatta", "Martonvásár", "Velence", "Gárdony", "Sukoró", "Pákozd", "Lovasberény",
+    "Bicske", "Felcsút", "Alcsútdoboz", "Etyek", "Tordas", "Kápolnásnyék", "Baracska", "Rácalmás", "Dunaföldvár", "Paks",
+    "Tolna", "Szekszárd", "Bátaszék", "Bonyhád", "Tamási", "Dombóvár", "Pincehely", "Simontornya", "Enying", "Sárbogárd",
   ]
+
 
 
 
