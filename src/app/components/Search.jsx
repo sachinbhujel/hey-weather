@@ -6,6 +6,7 @@ import { cities } from "@/data";
 function Search({ setCity }) {
     const inputRef = useRef();
     const [suggestions, setSuggestions] = useState([]);
+    const [cityErrMsg, setCityErrMsg] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,6 +17,7 @@ function Search({ setCity }) {
     };
 
     const handleSelect = (city) => {
+        setCityErrMsg(false);
         setCity(city);
         inputRef.current.value = city;
         setSuggestions([]);
@@ -28,6 +30,10 @@ function Search({ setCity }) {
                 city.toLowerCase().startsWith(value)
             );
             const slicedFiltered = filtered.slice(0, 12);
+            if (slicedFiltered.length === 0) {
+                setCityErrMsg(true);
+                console.log("hi");
+            }
             setSuggestions(slicedFiltered);
         } else {
             setSuggestions([]);
@@ -70,7 +76,7 @@ function Search({ setCity }) {
                 </button>
             </form>
 
-            {suggestions.length > 0 && (
+            {suggestions.length > 0 ? (
                 <ul className="custom-scrollbar absolute top-full left-0 mt-2 w-[100%] bg-background h-50 overflow-auto border border-primary rounded-lg z-10">
                     {suggestions.map((city, index) => (
                         <li
@@ -82,6 +88,15 @@ function Search({ setCity }) {
                         </li>
                     ))}
                 </ul>
+            ) : (
+                cityErrMsg && (
+                    <div className="custom-scrollbar text-primary absolute top-full left-0 mt-2 w-[100%] bg-background h-50 overflow-auto border border-primary rounded-lg z-10 flex flex-col justify-center items-center">
+                        <p className="font-medium text-lg">
+                            City is not available in my search data.
+                        </p>
+                        <p className=""> But, you can still search for it.</p>
+                    </div>
+                )
             )}
         </div>
     );
