@@ -32,7 +32,6 @@ function Search({ setCity }) {
             const slicedFiltered = filtered.slice(0, 12);
             if (slicedFiltered.length === 0) {
                 setCityErrMsg(true);
-                console.log("hi");
             }
             setSuggestions(slicedFiltered);
         } else {
@@ -90,11 +89,11 @@ function Search({ setCity }) {
                 </ul>
             ) : (
                 cityErrMsg && (
-                    <div className="custom-scrollbar text-primary absolute top-full left-0 mt-2 w-[100%] bg-background h-50 overflow-auto border border-primary rounded-lg z-10 flex flex-col justify-center items-center">
-                        <p className="font-medium text-lg">
+                    <div className="custom-scrollbar text-primary absolute top-full left-0 mt-2 w-[100%] bg-background h-50 overflow-auto border border-primary rounded-lg z-10 flex flex-col justify-center items-center p-2">
+                        <p className="font-medium text-lg text-center">
                             City is not available in my search data.
                         </p>
-                        <p className=""> But, you can still search for it.</p>
+                        <p className="text-center"> But, you can still search for it.</p>
                     </div>
                 )
             )}
