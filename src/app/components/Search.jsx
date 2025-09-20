@@ -93,7 +93,10 @@ function Search({ setCity }) {
                         <p className="font-medium text-lg text-center">
                             City is not available in my search data.
                         </p>
-                        <p className="text-center"> But, you can still search for it.</p>
+                        <p className="text-center">
+                            {" "}
+                            But, you can still search for it.
+                        </p>
                     </div>
                 )
             )}
