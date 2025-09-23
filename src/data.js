@@ -1444,7 +1444,7 @@ export const cities = [
     "Gorouol", "Inates", "Mehanna", "Ouallam", "Sanam", "Anzourou", "Abala", "Balleyara", "Filingué", "Kollo",
     "Ouallam", "Say", "Téra", "Tillabéri", "Torodi", "Ayourou", "Banibangou", "Bankilaré", "Dessa", "Gorouol",
     "Inates", "Mehanna", "Sanam", "Anzourou", "Abala", "Balleyara", "Filingué", "Dargol", "Gothèye", "Namaro",
-    "Sinder", "Farey", "Gotheye", "Kollo", "Liboré", "N'Dounga", "Ouro Gueladjo", "Simiri", "Tamou", "Tillakaina,
+    "Sinder", "Farey", "Gotheye", "Kollo", "Liboré", "N'Dounga", "Ouro Gueladjo", "Simiri", "Tamou", "Tillakaina",
     "Lagos", "Kano", "Ibadan", "Abuja", "Port Harcourt", "Benin City", "Maiduguri", "Zaria", "Aba", "Jos",
     "Ilorin", "Oyo", "Enugu", "Abeokuta", "Kaduna", "Ogbomoso", "Sokoto", "Akure", "Osogbo", "Bauchi",
     "Minna", "Calabar", "Uyo", "Gombe", "Owerri", "Damaturu", "Katsina", "Gusau", "Yenagoa", "Jalingo",
