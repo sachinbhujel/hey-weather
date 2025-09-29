@@ -14,6 +14,8 @@ function Search({ setCity }) {
             setCity(inputRef.current.value.trim());
             setSuggestions([]);
         }
+
+        setCityErrMsg(false);
     };
 
     const handleSelect = (city) => {
